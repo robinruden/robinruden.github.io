@@ -86,10 +86,12 @@ const styles = {
         color: "#00ff00",
         fontFamily: "'Press Start 2P', monospace",
         padding: "10px",
+        height: "100vh",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        
     
   },
   terminal: {
