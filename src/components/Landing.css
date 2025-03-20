@@ -1,0 +1,93 @@
+
+.container {
+    background: black;
+    color: #00ff00;
+    font-family: 'Press Start 2P', monospace;
+    padding: 10px;
+    height: 100vh;
+    min-Height: 100vh;
+    display: flex;
+    justify-Content: center;
+    align-Items: center;
+}     
+    
+.terminal {
+    border: 3px solid #00ff00;
+    padding: 20px;
+    max-Width: 600px;
+    margin: auto;
+    text-Align: left;
+    background: rgba(0, 0, 0, 0.8);
+    box-Shadow: 0 0 10px #00ff00;
+    overflow-X: auto;
+  }
+
+.ascii {
+    font-Size: 8px;
+    color: #00ff00;
+    line-Height: 1.2;
+    text-Align: center;
+    display: block;
+    max-Width: 100%;
+    overflow-X: auto;
+    white-Space: pre;
+    
+}
+  
+.option {
+    background: #00ff00;
+    color: black;
+    padding: 8px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: none;
+    font-size: 12px;
+    display: inline-block;
+    width: calc(50% - 10px); /* Two buttons per row on mobile */
+}
+
+@media (min-width: 500px) {
+    .option {
+        width: auto; /* Natural width on larger screens */
+        padding: 10px;
+        margin: 10px;
+    }
+}
+
+.startButton {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background: #c0c0c0;
+    border: 2px outset white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+  
+.startMenu {
+    position: fixed;
+    bottom: 50px;
+    left: 10px;
+    width: 200px;
+    background: #c0c0c0;
+    border: 3px outset white;
+    padding: 5px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+
+.menuItem {
+    background: #e0e0e0;
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
