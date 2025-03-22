@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
 import './Landing.css'
+import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
   const [output, setOutput] = useState("");
@@ -55,7 +57,12 @@ const LandingPage = () => {
         <p>🔹 Welcome to my portfolio!</p>
         <p>🔹 Choose an option below:</p>
         <div className="button-container">
-          <button onClick={() => handleCommand("about")}>📁 About Me</button>
+          <Link to='/about'><button onClick={() => handleCommand("about")}>📁 About Me</button>
+          </Link>
+
+         {/*  <Link to="/" className="back-button">
+                        <button>← Back</button>
+                      </Link> */}
           <button onClick={() => handleCommand("projects")}>💾 Projects</button>
           <button onClick={() => handleCommand("contact")}>📞 Contact</button>
           <button onClick={() => handleCommand("easteregg")}>🔍 Easter Egg</button>

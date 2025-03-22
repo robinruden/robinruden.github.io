@@ -1,0 +1,90 @@
+.container{
+  height: 100vh;
+}
+
+.about-terminal {
+    width: 100vw;
+    height: 90vh;
+    min-height: 90vh;
+    box-shadow: 0 0 20px #00ff00;
+
+   
+    overflow: auto;
+
+     
+  }
+  
+  .terminal-header {
+    display: flex;
+    justify-content: space-between;
+    background: #00aa00;
+    padding: 5px 10px;
+    margin: -20px -20px 15px -20px;
+    color: black;
+    font-size: 14px;
+  }
+  
+  .terminal-title {
+    font-weight: bold;
+  }
+  
+  .terminal-controls {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .control {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    border: 1px solid #008800;
+    cursor: pointer;
+  }
+  
+  .about-text {
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    margin: 0;
+    color: #00ff00;
+  }
+  
+  .terminal-footer {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .back-button button {
+    position: absolute;
+    top: 50rem;
+    right: 6rem;
+    background: #00aa00;
+    color: black;
+    border: 2px solid #008800;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    transition: all 0.3s;
+  }
+  
+  .back-button button:hover {
+    background: #00cc00;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 0 #008800;
+  }
+  
+  /* Blinking cursor effect */
+  .about-text::after {
+    content: '▋';
+    display: inline-block;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
