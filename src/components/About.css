@@ -3,6 +3,7 @@
 }
 
 .about-terminal {
+ 
     width: 100vw;
     height: 90vh;
     min-height: 90vh;
@@ -49,20 +50,34 @@
     line-height: 1.5;
     margin: 0;
     color: #00ff00;
+    text-align: left;
   }
   
-  .terminal-footer {
-    margin-top: 20px;
-    text-align: right;
+  .button-container{
+    position: fixed;
+    bottom: 4.3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    
+    
+
+    width: auto;
+    
+   
+
+    /* border: 2px solid #ff69b4; */
+   
   }
   
-  .back-button button {
-    position: absolute;
-    top: 50rem;
-    right: 6rem;
-    background: #00aa00;
+  .back-button{
+    position: relative;
+   /*  top: 35rem; */
+   /*  right: 7rem; */
+    
     color: black;
-    border: 2px solid #008800;
+    /* border: 2px solid #008800; */
     padding: 8px 16px;
     cursor: pointer;
     font-family: 'Press Start 2P', monospace;
@@ -75,6 +90,35 @@
     transform: translateY(-2px);
     box-shadow: 0 3px 0 #008800;
   }
+
+  
+button{
+    background: #00ff00;
+    color: black;
+    padding: 12px 20px;
+    margin: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: 3px solid #00aa00;
+    font-size: 16px;
+    display: inline-block;
+    width: 8rem;
+    max-width: 30rem;
+    height: 60px;
+    box-shadow: 0 5px 0 #008800;
+    position: relative;
+    top: 0;
+    letter-spacing: 1px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    
+} 
   
   /* Blinking cursor effect */
   .about-text::after {
@@ -88,3 +132,14 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
   }
+
+
+  /* Desktop media query */
+  @media (max-width: 400px) {
+    .button-container{
+     
+      bottom: 2.2rem;
+    }
+    
+  }
+ 

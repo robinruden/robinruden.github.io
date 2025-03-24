@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
   const [output, setOutput] = useState("");
-  // Removed unused state variable
+  
 
   const handleCommand = (command) => {
     let text = "";
@@ -17,7 +17,7 @@ const LandingPage = () => {
         text = "💾 My projects:\n1. Cool Website\n2. Interactive App";
         break;
       case "contact":
-        text = "📞 Email: robinruden@gmail.com🖥️ GitHub: https://github.com/robinruden";
+        text = " E-mail: robinruden@gmail.com🖥️ GitHub: https://github.com/robinruden";
         break;
       case "easteregg":
         text = "🐱 You found the secret! The cake is a lie.";
@@ -42,7 +42,8 @@ const LandingPage = () => {
   return (
     <div className="container">
       <div className="terminal">
-        <pre className="ascii">
+        <div className="content">
+          <pre className="ascii">
 {`
 ░▒▓███████▓▒░   ░▒▓██████▓▒░  ░▒▓███████▓▒░  ░▒▓█▓▒░ ░▒▓███████▓▒░  
 ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░ ░▒▓█▓▒░░▒▓█▓▒░ 
@@ -59,29 +60,13 @@ const LandingPage = () => {
         <div className="button-container">
           <Link to='/about'><button onClick={() => handleCommand("about")}>📁 About Me</button>
           </Link>
-
-         {/*  <Link to="/" className="back-button">
-                        <button>← Back</button>
-                      </Link> */}
           <button onClick={() => handleCommand("projects")}>💾 Projects</button>
           <button onClick={() => handleCommand("contact")}>📞 Contact</button>
           <button onClick={() => handleCommand("easteregg")}>🔍 Easter Egg</button>
         </div>
         <pre>{output}</pre>
-      </div>
-
-      {/* Start Button - Uncomment if needed
-      <button style={styles.startButton} onClick={() => setStartMenuOpen(!startMenuOpen)}>Start</button> */}
-
-      {/* Start Menu - Uncomment if needed
-      {startMenuOpen && (
-        <div style={styles.startMenu}>
-          <div style={styles.menuItem} onClick={() => handleCommand("about")}>📁 About Me</div>
-          <div style={styles.menuItem} onClick={() => handleCommand("projects")}>💾 Projects</div>
-          <div style={styles.menuItem} onClick={() => handleCommand("contact")}>📞 Contact</div>
-          <div style={styles.menuItem} onClick={() => alert("System shutting down... 😂")}>🔻 Shut Down</div>
         </div>
-      )} */}
+      </div>
     </div>
   );
 };
