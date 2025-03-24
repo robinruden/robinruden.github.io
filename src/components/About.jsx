@@ -1,10 +1,11 @@
 import React, { useState, useEffect} from 'react'
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './About.css'
 
 
 const About = () => {
+    const navigate = useNavigate();
     const [displayedText, setDisplayedText] = useState('');
     const aboutText = `
 > NAME: Robin Ruden
@@ -56,9 +57,8 @@ I am a full-stack developer with a great passion for creating, both through code
           </div>
           
           <div className="button-container">
-            <Link to="/" className="back-button">
-              <button>← Back</button>
-            </Link>
+          <button className="back-button" onClick={() => navigate('/')}>← Back</button>
+            
           </div>
         </div>
       </div>
