@@ -7,6 +7,8 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+    overflow-y: hidden;
     
     
 
@@ -77,6 +79,7 @@
    /*  border-radius: 5px; */
     font-family: 'Press Start 2P', monospace;
     cursor: pointer;
+    display: none;
 }
 
 .button-container button:hover {
