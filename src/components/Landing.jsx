@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
   const [output, setOutput] = useState("");
-  
+  const [typingDone, setTypingDone] = useState(true);
+  const navigate = useNavigate();
 
   const handleCommand = (command) => {
     let text = "";
@@ -29,17 +30,21 @@ const LandingPage = () => {
     // Simulated typing effect
     let i = 0;
     setOutput("");
+    setTypingDone(false)
+
     const typeEffect = () => {
       if (i < text.length) {
         setOutput((prev) => prev + text.charAt(i));
         i++;
         setTimeout(typeEffect, 30);
+      } else {
+        setTypingDone(true)
       }
     };
     typeEffect();
   };
 
-  const navigate = useNavigate();
+  
 
   return (
     <div className="container">
@@ -56,12 +61,15 @@ $$ | $$ | $$ |$$    $$ |$$ |$$ |      $$ |  $$ |$$ | $$ | $$ |$$    $$ |
 $$ \_$$ \_$$ |$$$$$$$$/ $$ |$$ \_____ $$ \__$$ |$$ | $$ | $$ |$$$$$$$$/ 
 $$   $$   $$/ $$       |$$ |$$       |$$    $$/ $$ | $$ | $$ |$$       |
 $$$$$/$$$$/   $$$$$$$/ $$/  $$$$$$$/  $$$$$$/  $$/  $$/  $$/  $$$$$$$/ 
-                                                                                                          
-                                                                                                                                        
-`}      
+                                                                                                                                                                                                                                                  
+`}     
+
         </pre>
-      <p>🔥 Choose an option below:</p>
-      <pre>{output}</pre>
+      <p>🧪 Choose an option below:</p>
+      <pre className="terminal-output">
+        {output}
+        {typingDone && <span className="cursor">▌</span>}
+        </pre> 
     
     <div className="button-container">
       <button onClick={() => {
