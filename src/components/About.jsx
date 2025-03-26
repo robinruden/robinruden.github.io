@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import './About.css'
 
 
@@ -41,7 +40,7 @@ I am a full-stack developer with a great passion for creating, both through code
     }, []);
   
     return (
-      <div className="container">
+      <div className=".about-container">
         <div className="terminal about-terminal">
           <div className="terminal-header">
             <div className="terminal-title">about.exe</div>

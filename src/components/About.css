@@ -1,5 +1,5 @@
-.container{
-  background: black;
+.about-container{
+    position: absolute;
     color: #00ff00;
     font-family: 'Press Start 2P', monospace;
     
@@ -33,8 +33,7 @@
 
   overflow: hidden;
 
-     
-  }
+     }
   
   .terminal-header {
     display: flex;
@@ -113,7 +112,7 @@
   }
 
   
-button{
+/* button{
     background: #00ff00;
     color: black;
     padding: 12px 20px;
@@ -139,7 +138,7 @@ button{
     text-overflow: ellipsis;
 
     
-} 
+}  */
   
   /* Blinking cursor effect */
   .about-text::after {
@@ -156,11 +155,11 @@ button{
 
 
   /* Desktop media query */
-  @media (max-width: 400px) {
+/*   @media (max-width: 400px) {
     .button-container{
      
       bottom: 2.2rem;
     }
     
-  }
+  } */
  

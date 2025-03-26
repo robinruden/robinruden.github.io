@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigation } from 'react-router-dom'
 import './Landing.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -49,7 +48,7 @@ const LandingPage = () => {
   return (
     <div className="container">
       <div className="terminal">
-        <div className="terminal-content">
+        
           <pre className="ascii">
 {`
 __                                             
@@ -65,12 +64,12 @@ $$$$$/$$$$/   $$$$$$$/ $$/  $$$$$$$/  $$$$$$/  $$/  $$/  $$/  $$$$$$$/
 `}     
 
         </pre>
-      <p>🧪 Choose an option below:</p>
-      <pre className="terminal-output">
+      <p>Choose an option below:</p>
+      <div className="terminal-output">
         {output}
         {typingDone && <span className="cursor">▌</span>}
-        </pre> 
-    </div>
+      </div> 
+    
     <div className="button-container">
       <button onClick={() => {
         handleCommand("about");
