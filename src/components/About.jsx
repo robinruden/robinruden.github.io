@@ -11,7 +11,7 @@ const About = () => {
 > NAME: Robin Ruden
 > OCCUPATION: Full-stack Developer
 
-> LOCATION: Sweden
+> LOCATION: Stockholm
       
 > SKILLS:
 • HTML/CSS

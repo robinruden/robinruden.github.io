@@ -49,7 +49,7 @@ const LandingPage = () => {
   return (
     <div className="container">
       <div className="terminal">
-        
+        <div className="terminal-content">
           <pre className="ascii">
 {`
 __                                             
@@ -70,7 +70,7 @@ $$$$$/$$$$/   $$$$$$$/ $$/  $$$$$$$/  $$$$$$/  $$/  $$/  $$/  $$$$$$$/
         {output}
         {typingDone && <span className="cursor">▌</span>}
         </pre> 
-    
+    </div>
     <div className="button-container">
       <button onClick={() => {
         handleCommand("about");

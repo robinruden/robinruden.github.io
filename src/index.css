@@ -4,3 +4,7 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'MyFont-1';
+  src: url('/assets/fonts/VT323-Regular.ttf') format('woff2');
+}
