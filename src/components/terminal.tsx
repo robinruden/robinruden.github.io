@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react"
 
 export function Terminal() {
   const [input, setInput] = useState("")
-  const [history, setHistory] = useState<string[]>(["SYSTEM V7 UNIX (c) 1979", "READY..."])
+  const [history, setHistory] = useState<string[]>(["PORTFOLIO V7 UNIX (c) 2025", "READY..."])
   const [cursorVisible, setCursorVisible] = useState(true)
   const [powerOn, setPowerOn] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -85,7 +85,7 @@ export function Terminal() {
   const togglePower = () => {
     setPowerOn(!powerOn)
     if (!powerOn) {
-      setHistory(["SYSTEM V7 UNIX (c) 1979", "READY..."])
+      setHistory(["PORTFOLIO V7 UNIX (c) 2025", "READY..."])
     }
   }
 
@@ -95,7 +95,7 @@ export function Terminal() {
       <div className="bg-neutral-800 rounded-lg p-5 pb-12 shadow-xl border-t border-neutral-700">
         {/* Monitor top panel with brand name */}
         <div className="absolute top-0 left-0 right-0 h-6 bg-neutral-900 rounded-t-lg flex items-center justify-center">
-          <div className="text-neutral-500 text-xs font-mono tracking-widest">DATATERM 70</div>
+          <div className="text-neutral-500 text-xs font-mono tracking-widest"></div>
         </div>
 
         {/* Screen bezel */}
