@@ -10,6 +10,8 @@ import { ChevronRight } from "lucide-react"
 export function Terminal() {
   const [input, setInput] = useState("")
   const [history, setHistory] = useState<string[]>(["ROBINS PORTFOLIO (c) 2025"])
+  
+  const hasInitializedMenu = useRef(false);
   const [cursorVisible, setCursorVisible] = useState(true)
   const [powerOn, setPowerOn] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -32,8 +34,22 @@ export function Terminal() {
     //"VERSION  - SHOW SYSTEM VERSION",
   ];
 
-
-
+  useEffect(() => {
+    // Show the menu automatically on first load, using local storage
+    const showInitialMenu = () => {
+      if (!hasInitializedMenu.current) {
+        // If menu hasn't been shown yet this session
+        if (!localStorage.getItem("menuShown")) {
+          setTimeout(() => {
+            setHistory((prev) => [...prev, ...AVAILABLE_COMMANDS])
+            localStorage.setItem("menuShown", "true")
+            hasInitializedMenu.current = true
+          }, 700)
+        }
+      }
+    }
+    showInitialMenu()
+  }, [])
 
   // Blinking cursor effect
   useEffect(() => {
@@ -55,20 +71,9 @@ export function Terminal() {
     return () => document.removeEventListener("click", handleClick)
   }, [powerOn])
 
-  useEffect(() => {
-    // Show the menu automatically on first load
-    const showInitialMenu = () => {
-     
-      
-      // Add a small delay for a better effect
-      setTimeout(() => {
-        setHistory(prev => [...prev, ...AVAILABLE_COMMANDS]);
-      }, 700);
-    };
-    
-    showInitialMenu();
-    // Empty dependency array means this runs once on component mount
-  }, []);
+  
+
+ 
 
 
   
