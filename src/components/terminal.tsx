@@ -1,11 +1,9 @@
-
-
 import React, { useState, useEffect, useRef } from "react"
 import { ChevronRight } from "lucide-react"
 
 export function Terminal() {
   const [input, setInput] = useState("")
-  const [history, setHistory] = useState<string[]>(["PORTFOLIO V7 UNIX (c) 2025", "READY..."])
+  const [history, setHistory] = useState<string[]>(["ROBINS PORTFOLIO V7 (c) 2025", "READY..."])
   const [cursorVisible, setCursorVisible] = useState(true)
   const [powerOn, setPowerOn] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -85,7 +83,7 @@ export function Terminal() {
   const togglePower = () => {
     setPowerOn(!powerOn)
     if (!powerOn) {
-      setHistory(["PORTFOLIO V7 UNIX (c) 2025", "READY..."])
+      setHistory(["ROBINS PORTFOLIO V7 (c) 2025", "READY..."])
     }
   }
 

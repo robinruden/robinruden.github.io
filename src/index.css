@@ -10,11 +10,11 @@
   --background-rgb: 0, 0, 0;
 }
 
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+}
 
 
 
@@ -30,9 +30,9 @@ body {
   background-image: repeating-linear-gradient(
     0deg,
     rgba(0, 255, 0, 0.15),
-    rgba(0, 255, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
+    rgba(0, 255, 0, 0.15) 1000px,
+    transparent 100px,
+    transparent 200px
   );
   background-size: 100% 2px;
 }
@@ -104,7 +104,7 @@ body {
 }
 
 .animate-flicker {
-  animation: flicker 2s infinite;
+  animation: flicker 0.04s infinite;
 }
 
 /* CRT monitor effects */
@@ -114,7 +114,7 @@ body {
 
 /* Screen vignette effect */
 .bg-vignette {
-  background: radial-gradient(circle at center, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+  background: radial-gradient(circle at center, transparent 90%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 /* Plastic texture */
@@ -132,7 +132,7 @@ body {
   background-size: 4px 4px;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'MyFont-1';
   src: url('/fonts/VT323-Regular.ttf') format('woff2');
-}
+} */
