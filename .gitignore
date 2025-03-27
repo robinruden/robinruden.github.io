@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+.cache/
+
+# Build output
+dist/
+build/
+out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Cache directories
+.cache/
+.tmp/
+.vite/
+.next/
+.svelte-kit/
+
+# GitHub Pages cache (gh-pages)
+**/.cache/gh-pages/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+
+# Optional lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
