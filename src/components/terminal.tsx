@@ -1,13 +1,39 @@
 import React, { useState, useEffect, useRef } from "react"
 import { ChevronRight } from "lucide-react"
 
+
+
+
+
+
+
 export function Terminal() {
   const [input, setInput] = useState("")
-  const [history, setHistory] = useState<string[]>(["ROBINS PORTFOLIO V7 (c) 2025", "READY..."])
+  const [history, setHistory] = useState<string[]>(["ROBINS PORTFOLIO (c) 2025"])
   const [cursorVisible, setCursorVisible] = useState(true)
   const [powerOn, setPowerOn] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
   const terminalRef = useRef<HTMLDivElement>(null)
+  
+  const AVAILABLE_COMMANDS = [
+    "AVAILABLE COMMANDS:",
+    "",
+    "",
+    "HELP",
+    //"MENU     - SHOW MAIN MENU", 
+    "PROJECTS - PORTFOLIO",
+    "SKILLS   - TECHNICAL SKILLS",
+    "ABOUT    - PERSONAL INFO",
+    "CONTACT  - CONTACT DETAILS",
+    //"RESUME   - VIEW RESUME",
+    "DATE     - CURRENT DATE",
+    //"DIR      - LIST FILES",
+    "CLEAR    - CLEAR SCREEN",
+    //"VERSION  - SHOW SYSTEM VERSION",
+  ];
+
+
+
 
   // Blinking cursor effect
   useEffect(() => {
@@ -29,6 +55,24 @@ export function Terminal() {
     return () => document.removeEventListener("click", handleClick)
   }, [powerOn])
 
+  useEffect(() => {
+    // Show the menu automatically on first load
+    const showInitialMenu = () => {
+     
+      
+      // Add a small delay for a better effect
+      setTimeout(() => {
+        setHistory(prev => [...prev, ...AVAILABLE_COMMANDS]);
+      }, 700);
+    };
+    
+    showInitialMenu();
+    // Empty dependency array means this runs once on component mount
+  }, []);
+
+
+  
+
   // Scroll to bottom when history changes
   useEffect(() => {
     if (terminalRef.current) {
@@ -44,17 +88,21 @@ export function Terminal() {
     let response: string[] = []
 
     // Simple command processing
+
+
+
+
+
+    
     if (command === "help") {
-      response = [
-        "AVAILABLE COMMANDS:",
-        "HELP - DISPLAY THIS HELP",
-        "DATE - SHOW CURRENT DATE",
-        "CLEAR - CLEAR SCREEN",
-        "ECHO [TEXT] - DISPLAY TEXT",
-        "DIR - LIST FILES",
-        "VERSION - SHOW SYSTEM VERSION",
-      ]
-    } else if (command === "date") {
+      // Check if AVAILABLE_COMMANDS are already in history
+      const helpAlreadyDisplayed = history.some(line => line === "AVAILABLE COMMANDS:");
+      
+      if (helpAlreadyDisplayed) {
+        response = ["Commands are already displayed above. Type 'CLEAR' first to reset."];
+      }
+    }
+     else if (command === "date") {
       response = [new Date().toLocaleString()]
     } else if (command === "clear") {
       setHistory([])
@@ -72,7 +120,36 @@ export function Terminal() {
       ]
     } else if (command === "version") {
       response = ["UNIX SYSTEM V RELEASE 7 - BELL LABORATORIES"]
-    } else {
+    } 
+    else if (command === "skills" || command === "2") {
+      response = [
+        "TECHNICAL SKILLS:",
+        "",
+        "LANGUAGES:",
+        "█████████▒▒ JAVASCRIPT    90%",
+        "████████▒▒▒ TYPESCRIPT    80%",
+        "█████████▒▒ REACT         92%",
+        "█████████▒▒ HTML/CSS      90%"
+        
+      ]
+    }
+    else if (command === "projects" || command === "1") {
+      response = [
+        "PROJECT LISTING:",
+        "",
+        "1. PORTFOLIO TERMINAL - REACT/TYPESCRIPT (2025)",
+        "   Interactive command-line portfolio with retro UI",
+        "   → https://github.com/robinruden/terminal-portfolio",
+        "",
+        "2. E-COMMERCE PLATFORM - REACT/NODE.JS (2024)",
+        "   Full-stack shopping platform with payment integration",
+        "   → https://github.com/robinruden/ecommerce-platform",
+      ]
+    } 
+    
+    
+    
+    else {
       response = [`COMMAND NOT FOUND: ${command.toUpperCase()}`]
     }
 
