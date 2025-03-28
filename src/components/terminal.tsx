@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react"
 
 
 
-
+let menuInitialized = false
 
 
 export function Terminal() {
@@ -36,19 +36,17 @@ export function Terminal() {
 
   useEffect(() => {
     // Show the menu automatically on first load, using local storage
-    const showInitialMenu = () => {
-      if (!hasInitializedMenu.current) {
+    
+      if (!menuInitialized) {
         // If menu hasn't been shown yet this session
-        if (!localStorage.getItem("menuShown")) {
+        
           setTimeout(() => {
             setHistory((prev) => [...prev, ...AVAILABLE_COMMANDS])
-            localStorage.setItem("menuShown", "true")
             hasInitializedMenu.current = true
           }, 700)
         }
-      }
-    }
-    showInitialMenu()
+      
+    
   }, [])
 
   // Blinking cursor effect
