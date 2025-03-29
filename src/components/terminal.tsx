@@ -1,55 +1,88 @@
 import React, { useState, useEffect, useRef } from "react"
 import { ChevronRight } from "lucide-react"
 
-
-
-
 let menuInitialized = false
-
 
 export function Terminal() {
   const [input, setInput] = useState("")
-  const [history, setHistory] = useState<string[]>(["ROBINS PORTFOLIO (c) 2025"])
-  
-  const hasInitializedMenu = useRef(false);
+  const [history, setHistory] = useState<(string | JSX.Element)[]>(["ROBINS PORTFOLIO (c) 2025"])
+
+  const hasInitializedMenu = useRef(false)
   const [cursorVisible, setCursorVisible] = useState(true)
   const [powerOn, setPowerOn] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
   const terminalRef = useRef<HTMLDivElement>(null)
-  
+
+  const projectsData = [
+    {
+      id: 1,
+      title: "Amusement Park Website",
+      stack: "Vue / JavaScript (2024)",
+      description: "Amusement park website with booking system",
+      link: "https://rexicocity.netlify.app/",
+      image: "/img/rexico.png",
+    },
+    {
+      id: 2,
+      title: "Amiga Dashboard",
+      stack: "React / Node.js (2024)",
+      description: "Amiga 500 dashboard with games and apps",
+      link: "https://amigadashboard.netlify.app/",
+      image: "/img/amiga.png",
+    },
+  ]
+
+  function ProjectGrid() {
+    return (
+      <div className="grid grid-cols-2 gap-3 mt-2">
+        {projectsData.map((project) => (
+          <div
+            key={project.id}
+            className="cursor-pointer hover:opacity-90 transition"
+            onClick={() => {
+              setHistory([
+                ...prev,
+                `> open ${project.id}`,
+                `PROJECT: ${project.title}`,
+                `STACK: ${project.stack}`,
+                `DESCRIPTION: ${project.description}`,
+                project.link,
+              ])
+            }}
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-24 object-cover border border-green-500"
+            />
+            <div className="text-xs mt-1 text-green-400">{project.title}</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   const AVAILABLE_COMMANDS = [
     "AVAILABLE COMMANDS:",
     "",
-    "",
     "HELP",
-    //"MENU     - SHOW MAIN MENU", 
     "PROJECTS - PORTFOLIO",
     "SKILLS   - TECHNICAL SKILLS",
     "ABOUT    - PERSONAL INFO",
     "CONTACT  - CONTACT DETAILS",
-    //"RESUME   - VIEW RESUME",
     "DATE     - CURRENT DATE",
-    //"DIR      - LIST FILES",
     "CLEAR    - CLEAR SCREEN",
-    //"VERSION  - SHOW SYSTEM VERSION",
-  ];
+  ]
 
   useEffect(() => {
-    // Show the menu automatically on first load, using local storage
-    
-      if (!menuInitialized) {
-        // If menu hasn't been shown yet this session
-        
-          setTimeout(() => {
-            setHistory((prev) => [...prev, ...AVAILABLE_COMMANDS])
-            hasInitializedMenu.current = true
-          }, 700)
-        }
-      
-    
+    if (!menuInitialized) {
+      setTimeout(() => {
+        setHistory((prev) => [...prev, ...AVAILABLE_COMMANDS])
+        hasInitializedMenu.current = true
+      }, 700)
+    }
   }, [])
 
-  // Blinking cursor effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCursorVisible((prev) => !prev)
@@ -57,26 +90,16 @@ export function Terminal() {
     return () => clearInterval(interval)
   }, [])
 
-  // Auto-focus input on mobile
   useEffect(() => {
     const handleClick = () => {
       if (powerOn) {
         inputRef.current?.focus()
       }
     }
-
     document.addEventListener("click", handleClick)
     return () => document.removeEventListener("click", handleClick)
   }, [powerOn])
 
-  
-
- 
-
-
-  
-
-  // Scroll to bottom when history changes
   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight
@@ -88,43 +111,20 @@ export function Terminal() {
     if (input.trim() === "") return
 
     const command = input.trim().toLowerCase()
-    let response: string[] = []
+    let response: (string | JSX.Element)[] = []
 
-    // Simple command processing
-
-
-
-
-
-    
     if (command === "help") {
-      // Check if AVAILABLE_COMMANDS are already in history
-      const helpAlreadyDisplayed = history.some(line => line === "AVAILABLE COMMANDS:");
-      
+      const helpAlreadyDisplayed = history.some(line => line === "AVAILABLE COMMANDS:")
       if (helpAlreadyDisplayed) {
-        response = ["Commands are already displayed above. Type 'CLEAR' first to reset."];
+        response = ["Commands are already displayed above. Type 'CLEAR' first to reset."]
       }
-    }
-     else if (command === "date") {
+    } else if (command === "date") {
       response = [new Date().toLocaleString()]
     } else if (command === "clear") {
       setHistory([])
       setInput("")
       return
-    } else if (command.startsWith("echo ")) {
-      response = [command.substring(5)]
-    } else if (command === "dir") {
-      response = [
-        "DIRECTORY LISTING:",
-        "SYSTEM.DAT    4096 BYTES",
-        "README.TXT     512 BYTES",
-        "BASIC.EXE     8192 BYTES",
-        "GAMES/         <DIR>",
-      ]
-    } else if (command === "version") {
-      response = ["UNIX SYSTEM V RELEASE 7 - BELL LABORATORIES"]
-    } 
-    else if (command === "skills" || command === "2") {
+    } else if (command === "skills" || command === "2") {
       response = [
         "TECHNICAL SKILLS:",
         "",
@@ -132,27 +132,24 @@ export function Terminal() {
         "█████████▒▒ JAVASCRIPT    90%",
         "████████▒▒▒ TYPESCRIPT    80%",
         "█████████▒▒ REACT         92%",
-        "█████████▒▒ HTML/CSS      90%"
-        
+        "█████████▒▒ HTML/CSS      90%",
       ]
-    }
-    else if (command === "projects" || command === "1") {
-      response = [
-        "PROJECT LISTING:",
-        "",
-        "1. PORTFOLIO TERMINAL - REACT/TYPESCRIPT (2025)",
-        "   Interactive command-line portfolio with retro UI",
-        "   → https://github.com/robinruden/terminal-portfolio",
-        "",
-        "2. E-COMMERCE PLATFORM - REACT/NODE.JS (2024)",
-        "   Full-stack shopping platform with payment integration",
-        "   → https://github.com/robinruden/ecommerce-platform",
-      ]
-    } 
-    
-    
-    
-    else {
+    } else if (command === "projects" || command === "1") {
+      response = ["PROJECT LISTING:", <ProjectGrid />]
+    } else if (command.startsWith("open ")) {
+      const id = parseInt(command.split(" ")[1])
+      const project = projectsData.find(p => p.id === id)
+      if (project) {
+        response = [
+          `PROJECT: ${project.title}`,
+          `STACK: ${project.stack}`,
+          `DESCRIPTION: ${project.description}`,
+          project.link,
+        ]
+      } else {
+        response = ["PROJECT NOT FOUND."]
+      }
+    } else {
       response = [`COMMAND NOT FOUND: ${command.toUpperCase()}`]
     }
 
@@ -169,29 +166,17 @@ export function Terminal() {
 
   return (
     <div className="w-full max-w-md relative">
-      {/* CRT Monitor Casing */}
       <div className="bg-neutral-800 rounded-lg p-5 pb-12 shadow-xl border-t border-neutral-700">
-        {/* Monitor top panel with brand name */}
         <div className="absolute top-0 left-0 right-0 h-6 bg-neutral-900 rounded-t-lg flex items-center justify-center">
           <div className="text-neutral-500 text-xs font-mono tracking-widest"></div>
         </div>
 
-        {/* Screen bezel */}
         <div className="bg-neutral-900 rounded-md p-3 mb-3 shadow-inner">
-          {/* Screen with power state */}
-          <div
-            className={`relative rounded overflow-hidden border-2 border-black ${powerOn ? "bg-black" : "bg-neutral-950"}`}
-          >
-            {/* Scan lines overlay */}
+          <div className={`relative rounded overflow-hidden border-2 border-black ${powerOn ? "bg-black" : "bg-neutral-950"}`}>
             {powerOn && <div className="absolute inset-0 pointer-events-none bg-scan-lines opacity-10"></div>}
-
-            {/* Screen curvature effect */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-black/20 via-transparent to-black/20 rounded-lg"></div>
-
-            {/* Terminal screen glow */}
             {powerOn && <div className="absolute inset-0 pointer-events-none bg-green-500/5 animate-pulse"></div>}
 
-            {/* Terminal output */}
             {powerOn ? (
               <div
                 ref={terminalRef}
@@ -200,7 +185,17 @@ export function Terminal() {
               >
                 {history.map((line, i) => (
                   <div key={i} className="whitespace-pre-wrap mb-1">
-                    {line}
+                    {typeof line === "string" ? (
+                      line.startsWith("http") ? (
+                        <a href={line} target="_blank" rel="noopener noreferrer" className="underline text-green-400 hover:text-green-200">
+                          {line}
+                        </a>
+                      ) : (
+                        line
+                      )
+                    ) : (
+                      line
+                    )}
                   </div>
                 ))}
                 <div className="flex items-center">
@@ -213,7 +208,6 @@ export function Terminal() {
               <div className="h-[60vh]"></div>
             )}
 
-            {/* Hidden input for mobile keyboard */}
             <form onSubmit={handleSubmit} className={`px-3 py-2 border-t border-green-500/30 ${!powerOn && "hidden"}`}>
               <input
                 ref={inputRef}
@@ -228,9 +222,7 @@ export function Terminal() {
           </div>
         </div>
 
-        {/* Control panel */}
         <div className="absolute bottom-0 left-0 right-0 h-10 bg-neutral-700 rounded-b-lg flex items-center px-4 gap-4">
-          {/* Power button */}
           <button
             onClick={togglePower}
             className={`w-6 h-6 rounded-full border-2 border-neutral-600 flex items-center justify-center ${powerOn ? "bg-green-500/70" : "bg-red-500/70"}`}
@@ -239,22 +231,15 @@ export function Terminal() {
             <div className="w-2 h-2 bg-white rounded-full"></div>
           </button>
 
-          {/* Indicator lights */}
-          <div
-            className={`w-3 h-3 rounded-full ${powerOn ? "bg-amber-500" : "bg-neutral-500"} shadow-glow-amber`}
-          ></div>
-          <div
-            className={`w-3 h-3 rounded-full ${powerOn && history.length > 2 ? "bg-red-500 animate-pulse" : "bg-neutral-500"}`}
-          ></div>
+          <div className={`w-3 h-3 rounded-full ${powerOn ? "bg-amber-500" : "bg-neutral-500"} shadow-glow-amber`}></div>
+          <div className={`w-3 h-3 rounded-full ${powerOn && history.length > 2 ? "bg-red-500 animate-pulse" : "bg-neutral-500"}`}></div>
 
-          {/* Fake knobs */}
           <div className="ml-auto flex gap-3">
             <div className="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-600"></div>
             <div className="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-600"></div>
           </div>
         </div>
 
-        {/* Ventilation slots */}
         <div className="absolute top-8 right-3 flex flex-col gap-1">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="w-6 h-0.5 bg-neutral-700 rounded-full"></div>
@@ -264,4 +249,3 @@ export function Terminal() {
     </div>
   )
 }
-
