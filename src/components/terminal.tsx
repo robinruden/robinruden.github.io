@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, JSX } from "react"
 import { ChevronRight } from "lucide-react"
 
 let menuInitialized = false
@@ -40,7 +40,7 @@ export function Terminal() {
             key={project.id}
             className="cursor-pointer hover:opacity-90 transition"
             onClick={() => {
-              setHistory([
+              setHistory(prev => [
                 ...prev,
                 `> open ${project.id}`,
                 `PROJECT: ${project.title}`,
