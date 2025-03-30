@@ -1,18 +1,55 @@
-import React, { useState, useEffect, useRef, JSX } from "react"
+import React, { useState, useEffect, useRef, JSX, useCallback } from "react"
 import { ChevronRight } from "lucide-react"
 import './Terminal.css'
 
 let menuInitialized = false
 
+
+export function Typewriter({ text, speed = 50, onComplete = () => {} }: {
+  text: string;
+  speed?: number;
+  onComplete?: (finalText?: string) => void;
+}) {
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const intervalId = setInterval(() => {
+      setDisplayedText((prev) => prev + text[currentIndex]);
+      currentIndex++;
+      if (currentIndex === text.length) {
+        clearInterval(intervalId);
+        if (onComplete) onComplete(text);
+      }
+    }, speed);
+    return () => clearInterval(intervalId);
+  }, [text, speed, onComplete]);
+
+  return <span>{displayedText}</span>;
+}
+
+
+
+
 export function Terminal() {
   const [input, setInput] = useState("")
-  const [history, setHistory] = useState<(string | JSX.Element)[]>(["ROBINS PORTFOLIO (c) 2025"])
+  const [history, setHistory] = useState<(string | JSX.Element)[]>([])
+  const [bannerText, setBannerText] = useState("")
 
   const hasInitializedMenu = useRef(false)
   const [cursorVisible, setCursorVisible] = useState(true)
   const [powerOn, setPowerOn] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
   const terminalRef = useRef<HTMLDivElement>(null)
+
+
+
+  const handleBannerComplete = useCallback((finalText?: string) => {
+    if (finalText) {
+      setBannerText(finalText);
+    }
+  }, []);
+
 
   const projectsData = [
     {
@@ -25,43 +62,63 @@ export function Terminal() {
     },
     {
       id: 2,
-      title: "Amiga Dashboard",
-      stack: "React / Node.js (2024)",
+      title: "Amiga styled Dashboard",
+      stack: "React / JavaScript (2024)",
       description: "Amiga 500 dashboard with games and apps",
       link: "https://amigadashboard.netlify.app/",
       image: "/img/amiga.png",
     },
   ]
 
-  function ProjectGrid() {
+  function ProjectGrid( { projectsData }) {
+
+    const [ selectedProjectId, setSelectedProjectId ] = useState(null)
+
+    const handleProjectClick = (projectId) => {
+      setSelectedProjectId((prev => ( prev === projectId ? null : projectId)))
+    }
+    const selectedProject = projectsData.find(
+      (project) => project.id === selectedProjectId
+    )
+    
     return (
+      <div>
       <div className="grid grid-cols-2 gap-3 mt-2">
         {projectsData.map((project) => (
           <div
             key={project.id}
             className="cursor-pointer hover:opacity-90 transition"
-            onClick={() => {
-              setHistory(prev => [
-                ...prev,
-                `> open ${project.id}`,
-                `PROJECT: ${project.title}`,
-                `STACK: ${project.stack}`,
-                `DESCRIPTION: ${project.description}`,
-                project.link,
-              ])
-            }}
+            onClick={() => handleProjectClick(project.id)} 
           >
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-24 object-cover border border-green-500"
+              className="project-image"
             />
             <div className="text-xs mt-1 text-green-400">{project.title}</div>
           </div>
         ))}
       </div>
-    )
-  }
+       {selectedProject && (
+        <div className="mt-4 p-4 border border-green-500 rounded">
+          <h3 className="text-green-400 font-bold">{selectedProject.title}</h3>
+          <p className="text-green-500">{selectedProject.description}</p>
+          <p className="text-green-500">{selectedProject.stack}</p>
+          <a
+            className="underline text-green-400 hover:text-green-200"
+            href={selectedProject.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Project
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+    
+  
 
   const AVAILABLE_COMMANDS = [
     "AVAILABLE COMMANDS:",
@@ -136,7 +193,7 @@ export function Terminal() {
         "█████████▒▒ HTML/CSS      90%",
       ]
     } else if (command === "projects" || command === "1") {
-      response = ["PROJECT LISTING:", <ProjectGrid />]
+      response = ["PROJECT LISTING:", <ProjectGrid projectsData={projectsData} />]
     } else if (command.startsWith("open ")) {
       const id = parseInt(command.split(" ")[1])
       const project = projectsData.find(p => p.id === id)
@@ -167,7 +224,8 @@ export function Terminal() {
 
   return (
     <div className="terminal-wrapper relative">
-    <div className="w-full max-w-md relative">
+      
+    <div className="the-tv relative">
       <div className="bg-neutral-800 rounded-lg p-5 pb-12 shadow-xl border-t border-neutral-700">
         <div className="absolute top-0 left-0 right-0 h-6 bg-neutral-900 rounded-t-lg flex items-center justify-center">
           <div className="text-neutral-500 text-xs font-mono tracking-widest"></div>
@@ -176,7 +234,11 @@ export function Terminal() {
         <div className="bg-neutral-900 rounded-md p-3 mb-3 shadow-inner">
           <div className={`tv-container ${powerOn ? "" : "bg-neutral-950"}`}>
             {powerOn ? (
+              
+
+              
               <div ref={terminalRef} className="tv-terminal-content">
+                
                 {history.map((line, i) => (
                   <div key={i} className="whitespace-pre-wrap mb-1">
                     {typeof line === "string" ? (
@@ -197,6 +259,18 @@ export function Terminal() {
                     )}
                   </div>
                 ))}
+
+                <div className="banner">
+                  {bannerText ? (
+                    <span>{bannerText}</span>
+                    ) : (
+                    <Typewriter
+                    text="WELCOME TO ROBINS PORTFOLIO (c) 2025. PLEASE TYPE IN A COMMAND BELOW OR JUST CLICK ON IT"
+                    speed={50}
+                    onComplete={handleBannerComplete}
+                 />
+                   )}
+                </div>
                 <div className="flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1 text-green-500" />
                   <span>{input}</span>
