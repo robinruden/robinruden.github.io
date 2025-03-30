@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, JSX } from "react"
 import { ChevronRight } from "lucide-react"
+import './Terminal.css'
 
 let menuInitialized = false
 
@@ -165,6 +166,7 @@ export function Terminal() {
   }
 
   return (
+    <div className="terminal-wrapper relative">
     <div className="w-full max-w-md relative">
       <div className="bg-neutral-800 rounded-lg p-5 pb-12 shadow-xl border-t border-neutral-700">
         <div className="absolute top-0 left-0 right-0 h-6 bg-neutral-900 rounded-t-lg flex items-center justify-center">
@@ -172,22 +174,19 @@ export function Terminal() {
         </div>
 
         <div className="bg-neutral-900 rounded-md p-3 mb-3 shadow-inner">
-          <div className={`relative rounded overflow-hidden border-2 border-black ${powerOn ? "bg-black" : "bg-neutral-950"}`}>
-            {powerOn && <div className="absolute inset-0 pointer-events-none bg-scan-lines opacity-10"></div>}
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-black/20 via-transparent to-black/20 rounded-lg"></div>
-            {powerOn && <div className="absolute inset-0 pointer-events-none bg-green-500/5 animate-pulse"></div>}
-
+          <div className={`tv-container ${powerOn ? "" : "bg-neutral-950"}`}>
             {powerOn ? (
-              <div
-                ref={terminalRef}
-                className="h-[60vh] p-3 overflow-y-auto font-mono text-green-500 text-sm leading-tight"
-                style={{ textShadow: "0 0 5px rgba(0, 255, 0, 0.5)" }}
-              >
+              <div ref={terminalRef} className="tv-terminal-content">
                 {history.map((line, i) => (
                   <div key={i} className="whitespace-pre-wrap mb-1">
                     {typeof line === "string" ? (
                       line.startsWith("http") ? (
-                        <a href={line} target="_blank" rel="noopener noreferrer" className="underline text-green-400 hover:text-green-200">
+                        <a
+                          href={line}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline text-green-400 hover:text-green-200"
+                        >
                           {line}
                         </a>
                       ) : (
@@ -201,11 +200,15 @@ export function Terminal() {
                 <div className="flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1 text-green-500" />
                   <span>{input}</span>
-                  <span className={`w-2 h-4 bg-green-500 ml-0.5 ${cursorVisible ? "opacity-100" : "opacity-0"}`}></span>
+                  <span
+                    className={`w-2 h-4 bg-green-500 ml-0.5 ${
+                      cursorVisible ? "opacity-100" : "opacity-0"
+                    }`}
+                  ></span>
                 </div>
               </div>
             ) : (
-              <div className="h-[60vh]"></div>
+              <div className="tv-terminal-content"></div>
             )}
 
             <form onSubmit={handleSubmit} className={`px-3 py-2 border-t border-green-500/30 ${!powerOn && "hidden"}`}>
@@ -246,6 +249,7 @@ export function Terminal() {
           ))}
         </div>
       </div>
+    </div>
     </div>
   )
 }

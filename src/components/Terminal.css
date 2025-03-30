@@ -1,0 +1,49 @@
+.terminal-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+
+    border: 2px solid pink; 
+ 
+  }
+
+.tv-container {
+    width: 80vw;
+    height: 80vh;
+    background-color: #000; 
+    border: 2px solid #000;
+    border-radius: 0.5rem; 
+    overflow: hidden;
+    position: relative;
+
+    border: 2px solid pink; 
+  }
+  
+  
+  .tv-terminal-content {
+    height: 100%;
+    width: 100%;
+    padding: 0.75rem; 
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #22c55e;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+
+    /* border: 2px solid pink;  */
+  }
+  
+  /* Media query for desktop view (Tailwind's lg: breakpoint ~1024px) */
+  @media (min-width: 1024px) {
+   
+    
+  }
+  
+ 
+
+  @media (min-width: 1024px) {
+    
+  }
