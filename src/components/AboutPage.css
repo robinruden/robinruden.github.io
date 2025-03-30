@@ -1,0 +1,59 @@
+/* AboutPage.css */
+.about-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;       /* Terminal background */
+  color: #22c55e;               /* Terminal green text */
+  padding: 1rem;
+  border: 1px solid #22c55e;
+  margin-top: 1rem;
+}
+
+.about-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  /* border: 2px solid #22c55e; */
+  margin-bottom: 1rem;
+}
+
+.about-description {
+  text-align: left;
+  font-family: monospace;       /* Terminal style font */
+}
+
+
+.terminal-photo {
+  background-color: black;
+  display: inline-block;
+  /* padding: 1rem;
+  border: 2px solid #0f0; */
+  position: relative;
+  
+ 
+}
+
+.terminal-photo img {
+  width: 10rem;
+  display: block;
+  filter: brightness(1.1) contrast(1) sepia(0.6) hue-rotate(70deg);
+  opacity: 0.9;
+  /* image-rendering: pixelated;  */
+  transform: scale(0.89)
+}
+
+/* Optional scanline overlay */
+.terminal-photo::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.1),
+    rgba(0, 255, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}

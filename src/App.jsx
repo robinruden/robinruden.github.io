@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import LandingPage from './components/Landing'
-import About from './components/About'
+/* import LandingPage from './components/Landing' */
+/* import About from './components/About' */
 import { Terminal } from "./components/terminal"
 
 const App = () => {

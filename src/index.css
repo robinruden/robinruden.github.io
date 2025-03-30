@@ -26,6 +26,22 @@ body {
 }
 
 
+/* body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.05),
+    rgba(0, 255, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none; 
+}
+ */
+
+
 .bg-scan-lines {
   background-image: repeating-linear-gradient(
     0deg,
@@ -136,3 +152,23 @@ body {
   font-family: 'MyFont-1';
   src: url('/fonts/VT323-Regular.ttf') format('woff2');
 } */
+
+
+.scan-line-overlay {
+  position: relative;
+}
+
+.scan-line-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.1),
+    rgba(0, 255, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}

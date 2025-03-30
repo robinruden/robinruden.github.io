@@ -1,15 +1,21 @@
 import React, { useState, useEffect, useRef, JSX, useCallback } from "react"
 import { ChevronRight } from "lucide-react"
 import './Terminal.css'
+import { AboutPage } from './AboutPage'
 
-let menuInitialized = false
+/* let menuInitialized = false */
 
 
-export function Typewriter({ text, speed = 50, onComplete = () => {} }: {
+export function Typewriter({ 
+  text, 
+  speed = 50, 
+  onComplete = () => {},
+ }: {
   text: string;
   speed?: number;
   onComplete?: (finalText?: string) => void;
 }) {
+
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
@@ -43,11 +49,26 @@ export function Terminal() {
   const terminalRef = useRef<HTMLDivElement>(null)
 
 
+  const AVAILABLE_COMMANDS = [
+    "AVAILABLE COMMANDS:",
+    "",
+    "HELP",
+    "PROJECTS - PORTFOLIO",
+    "SKILLS   - TECHNICAL SKILLS",
+    "ABOUT    - PERSONAL INFO",
+    "CONTACT  - CONTACT DETAILS",
+    "DATE     - CURRENT DATE",
+    "CLEAR    - CLEAR SCREEN",
+  ]
+
 
   const handleBannerComplete = useCallback((finalText?: string) => {
     if (finalText) {
       setBannerText(finalText);
-    }
+      setTimeout(() => {
+      setHistory((prev) => [...prev, ...AVAILABLE_COMMANDS]);
+    }, 1500);
+  }
   }, []);
 
 
@@ -70,13 +91,13 @@ export function Terminal() {
     },
   ]
 
-  function ProjectGrid( { projectsData }) {
+  function ProjectGrid({ projectsData }: { projectsData: typeof projectsData }) {
+    const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
-    const [ selectedProjectId, setSelectedProjectId ] = useState(null)
+    const handleProjectClick = (projectId: number) => {
+      setSelectedProjectId((prev) => (prev === projectId ? null : projectId));
+    };
 
-    const handleProjectClick = (projectId) => {
-      setSelectedProjectId((prev => ( prev === projectId ? null : projectId)))
-    }
     const selectedProject = projectsData.find(
       (project) => project.id === selectedProjectId
     )
@@ -120,19 +141,8 @@ export function Terminal() {
     
   
 
-  const AVAILABLE_COMMANDS = [
-    "AVAILABLE COMMANDS:",
-    "",
-    "HELP",
-    "PROJECTS - PORTFOLIO",
-    "SKILLS   - TECHNICAL SKILLS",
-    "ABOUT    - PERSONAL INFO",
-    "CONTACT  - CONTACT DETAILS",
-    "DATE     - CURRENT DATE",
-    "CLEAR    - CLEAR SCREEN",
-  ]
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (!menuInitialized) {
       setTimeout(() => {
         setHistory((prev) => [...prev, ...AVAILABLE_COMMANDS])
@@ -140,7 +150,7 @@ export function Terminal() {
       }, 700)
     }
   }, [])
-
+ */
   useEffect(() => {
     const interval = setInterval(() => {
       setCursorVisible((prev) => !prev)
@@ -176,7 +186,11 @@ export function Terminal() {
       if (helpAlreadyDisplayed) {
         response = ["Commands are already displayed above. Type 'CLEAR' first to reset."]
       }
-    } else if (command === "date") {
+    } else if (command === "about") {
+      response = ["ABOUT", <AboutPage/>]
+    }
+    
+    else if (command === "date") {
       response = [new Date().toLocaleString()]
     } else if (command === "clear") {
       setHistory([])
@@ -230,14 +244,26 @@ export function Terminal() {
         <div className="absolute top-0 left-0 right-0 h-6 bg-neutral-900 rounded-t-lg flex items-center justify-center">
           <div className="text-neutral-500 text-xs font-mono tracking-widest"></div>
         </div>
-
+   
         <div className="bg-neutral-900 rounded-md p-3 mb-3 shadow-inner">
           <div className={`tv-container ${powerOn ? "" : "bg-neutral-950"}`}>
+            
             {powerOn ? (
               
 
               
               <div ref={terminalRef} className="tv-terminal-content">
+                 <div className="banner">
+                  {bannerText ? (
+                    <span>{bannerText}</span>
+                    ) : (
+                    <Typewriter
+                    text="WELCOME TO ROBINS PORTFOLIO (c) 2025. PLEASE TYPE IN A COMMAND BELOW OR JUST CLICK ON IT"
+                    speed={50}
+                    onComplete={handleBannerComplete}
+                 />
+                   )}
+                </div>
                 
                 {history.map((line, i) => (
                   <div key={i} className="whitespace-pre-wrap mb-1">
@@ -260,17 +286,7 @@ export function Terminal() {
                   </div>
                 ))}
 
-                <div className="banner">
-                  {bannerText ? (
-                    <span>{bannerText}</span>
-                    ) : (
-                    <Typewriter
-                    text="WELCOME TO ROBINS PORTFOLIO (c) 2025. PLEASE TYPE IN A COMMAND BELOW OR JUST CLICK ON IT"
-                    speed={50}
-                    onComplete={handleBannerComplete}
-                 />
-                   )}
-                </div>
+            
                 <div className="flex items-center">
                   <ChevronRight className="h-4 w-4 mr-1 text-green-500" />
                   <span>{input}</span>
