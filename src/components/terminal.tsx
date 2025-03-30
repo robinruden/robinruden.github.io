@@ -42,9 +42,9 @@ export function Terminal() {
   const [history, setHistory] = useState<(string | JSX.Element)[]>([])
   const [bannerText, setBannerText] = useState("")
 
-  const hasInitializedMenu = useRef(false)
   const [cursorVisible, setCursorVisible] = useState(true)
   const [powerOn, setPowerOn] = useState(true)
+
   const inputRef = useRef<HTMLInputElement>(null)
   const terminalRef = useRef<HTMLDivElement>(null)
 
@@ -53,26 +53,125 @@ export function Terminal() {
     "AVAILABLE COMMANDS:",
     "",
     "HELP",
-    "PROJECTS - PORTFOLIO",
-    "SKILLS   - TECHNICAL SKILLS",
-    "ABOUT    - PERSONAL INFO",
-    "CONTACT  - CONTACT DETAILS",
-    "DATE     - CURRENT DATE",
-    "CLEAR    - CLEAR SCREEN",
+    "PORTFOLIO",
+    "SKILLS",
+    "ABOUT",
+    "CONTACT",
+    "DATE",
+    "CLEAR",
   ]
 
+  // Process a command and return the response as an array
+  const processCommand = (command: string): (string | JSX.Element)[] => {
+    let response: (string | JSX.Element)[] = [];
+    const cmd = command.trim().toLowerCase();
+
+    if (cmd === "help") {
+      // If help is already displayed, send a message
+      const helpAlreadyDisplayed = history.some(
+        (line) => typeof line === "string" && line === "AVAILABLE COMMANDS:"
+      );
+      if (helpAlreadyDisplayed) {
+        response = [
+          "Commands are already displayed above. Type 'CLEAR' first to reset.",
+        ];
+      }
+    } else if (cmd === "about") {
+      response = ["ABOUT", <AboutPage key="about" />];
+    } else if (cmd === "date") {
+      response = [new Date().toLocaleString()];
+    } else if (cmd === "clear") {
+      setHistory([]);
+      return [];
+    } else if (cmd === "skills" || cmd === "2") {
+      response = [
+        "TECHNICAL SKILLS:",
+        "",
+        "LANGUAGES:",
+        "█████████▒▒ JAVASCRIPT    90%",
+        "████████▒▒▒ TYPESCRIPT    80%",
+        "█████████▒▒ REACT         92%",
+        "█████████▒▒ HTML/CSS      90%",
+      ];
+    } else if (cmd === "portfolio" || cmd === "1") {
+      response = ["PROJECT LISTING:", <ProjectGrid projectsData={projectsData} key="portfolio" />];
+    } else if (cmd.startsWith("open ")) {
+      const id = parseInt(cmd.split(" ")[1]);
+      const project = projectsData.find((p) => p.id === id);
+      if (project) {
+        response = [
+          `PROJECT: ${project.title}`,
+          `STACK: ${project.stack}`,
+          `DESCRIPTION: ${project.description}`,
+          project.link,
+        ];
+      } else {
+        response = ["PROJECT NOT FOUND."];
+      }
+    } else {
+      response = [`COMMAND NOT FOUND: ${cmd.toUpperCase()}`];
+    }
+    return response;
+  };
+
+  // A helper function that appends the command and its response to the history.
+  const handleCommand = (command: string) => {
+    const responses = processCommand(command);
+    setHistory((prev) => [...prev, `> ${command}`, ...responses]);
+  };
+
+  // Handler for form submit (using the typed input)
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input.trim() === "") return;
+    handleCommand(input.trim());
+    setInput("");
+  };
+
+  // Handler for clicking on an available command
+  const handleCommandClick = (cmd: string) => {
+    handleCommand(cmd);
+  };
+
+  // Render a command element: header and blank lines are not clickable
+  const renderAvailableCommand = (cmd: string, index: number) => {
+    if (cmd === "AVAILABLE COMMANDS:" || cmd.trim() === "") {
+      return <span key={index}>{cmd}</span>;
+    }
+    return (
+      <span
+        key={index}
+        className="available-command"
+        onClick={() => handleCommandClick(cmd.toLowerCase())}
+      >
+        {cmd}
+      </span>
+    );
+  };
 
   const handleBannerComplete = useCallback((finalText?: string) => {
     if (finalText) {
       setBannerText(finalText);
       setTimeout(() => {
-      setHistory((prev) => [...prev, ...AVAILABLE_COMMANDS]);
+        setHistory((prev) => [
+          ...prev, 
+          ...AVAILABLE_COMMANDS.map((cmd, index) => renderAvailableCommand(cmd, index)),
+      ])
     }, 1500);
   }
   }, []);
 
 
-  const projectsData = [
+  interface Project {
+    id: number;
+    title: string;
+    stack: string;
+    description: string;
+    link: string;
+    image: string;
+  }
+
+  const projectsData: Project[] = [
     {
       id: 1,
       title: "Amusement Park Website",
@@ -91,7 +190,7 @@ export function Terminal() {
     },
   ]
 
-  function ProjectGrid({ projectsData }: { projectsData: typeof projectsData }) {
+  function ProjectGrid({ projectsData }: { projectsData: Project[] }) {
     const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
     const handleProjectClick = (projectId: number) => {
@@ -168,7 +267,7 @@ export function Terminal() {
     return () => document.removeEventListener("click", handleClick)
   }, [powerOn])
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight
     }
@@ -179,9 +278,9 @@ export function Terminal() {
     if (input.trim() === "") return
 
     const command = input.trim().toLowerCase()
-    let response: (string | JSX.Element)[] = []
+    let response: (string | JSX.Element)[] = [] */
 
-    if (command === "help") {
+ /*    if (command === "help") {
       const helpAlreadyDisplayed = history.some(line => line === "AVAILABLE COMMANDS:")
       if (helpAlreadyDisplayed) {
         response = ["Commands are already displayed above. Type 'CLEAR' first to reset."]
@@ -227,7 +326,7 @@ export function Terminal() {
 
     setHistory([...history, `> ${input}`, ...response])
     setInput("")
-  }
+  } */
 
   const togglePower = () => {
     setPowerOn(!powerOn)
