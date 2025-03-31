@@ -135,24 +135,18 @@ export function Terminal() {
         ];
       }
     } else if (cmd === "about") {
-      response = ["ABOUT", <AboutPage key="about" />];
+      response = ["Switching to ABOUT section..."];
     } else if (cmd === "date") {
       response = [new Date().toLocaleString()];
     } else if (cmd === "clear") {
-      setHistory([]);
+      window.location.reload()
       return [];
     } else if (cmd === "skills" || cmd === "2") {
-      response = [
-        "TECHNICAL SKILLS:",
-        "",
-        "LANGUAGES:",
-        "█████████▒▒ JAVASCRIPT    90%",
-        "████████▒▒▒ TYPESCRIPT    80%",
-        "█████████▒▒ REACT         92%",
-        "█████████▒▒ HTML/CSS      90%",
-      ];
+      response = ["Switching to SKILLS section..."];
     } else if (cmd === "portfolio" || cmd === "1") {
-      response = ["PROJECT LISTING:", <ProjectGrid projectsData={projectsData} key="portfolio" />];
+      response = ["Switching to PORTFOLIO section..."];
+    } else if (cmd === "contact") {
+      response = ["Switching to CONTACT section..."];
     } else if (cmd.startsWith("open ")) {
       const id = parseInt(cmd.split(" ")[1]);
       const project = projectsData.find((p) => p.id === id);
@@ -171,6 +165,7 @@ export function Terminal() {
     }
     return response;
   };
+
 
   // A helper function that appends the command and its response to the history.
   const handleCommand = (command: string) => {
@@ -321,7 +316,7 @@ export function Terminal() {
                     ) : (
                       <Typewriter
                         text="WELCOME TO ROBINS PORTFOLIO © 2025. PLEASE TYPE IN A COMMAND BELOW OR JUST CLICK ON IT"
-                        speed={30}
+                        speed={23}
                         onComplete={handleBannerComplete}
                       />
                     )}
@@ -358,17 +353,33 @@ export function Terminal() {
                       {activeSection === "skills" && (
                         <div className="skills-section">
                           <p>TECHNICAL SKILLS:</p>
-                          <p>LANGUAGES:</p>
-                          <p>█████████▒▒ JAVASCRIPT    90%</p>
-                          <p>████████▒▒▒ TYPESCRIPT    80%</p>
-                          <p>█████████▒▒ REACT         92%</p>
-                          <p>█████████▒▒ HTML/CSS      90%</p>
+                          <p></p>
+                          <p>███████░░░   HTML/CSS      87%</p>
+                          <p>█████████░   JAVASCRIPT    90%</p>
+                          <p>██████░░░░   TYPESCRIPT    78%</p>
+                          <p>████████░░   REACT         92%</p>
+                          <p>███████░░░   VUE           85%</p>
+                          <p>█████████░   PostgreSQL    93%</p>
+                          <p>█████████░   MySQL         91%</p>
+                          <p>████████░░   MongoDB       89%</p>
+                          
                         </div>
                       )}
                       {activeSection === "contact" && (
                         <div className="contact-section">
                           <p>CONTACT INFORMATION:</p>
-                          <p>Email: example@example.com</p>
+                          <p>Name: Robin Rudén</p>
+                          <p>
+                            
+                            Email:{" "} 
+                            <a href="mailto:robinruden@gmail.com"
+                            className="underline text-green-400 hover:text-green-200"
+                            >
+                              robinruden@gmail.com
+                            </a>
+                          </p>
+                          <p>Phone: 0730502608</p>
+                          <p>Fax:   3.14159265</p>
                         </div>
                       )}
                     </div>
@@ -420,11 +431,7 @@ export function Terminal() {
             </div>
           </div>
 
-          <div className="absolute top-8 right-3 flex flex-col gap-1">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-6 h-0.5 bg-neutral-700 rounded-full"></div>
-            ))}
-          </div>
+         
         </div>
       </div>
     </div>

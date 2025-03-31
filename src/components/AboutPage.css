@@ -57,3 +57,18 @@
   );
   pointer-events: none;
 }
+
+.ascii-portrait {
+  font-family: 'Courier New', monospace;
+  font-size: 4px;  /* Adjust size as needed */
+  line-height: 1;  /* Tight line spacing for ASCII art */
+  color: #22c55e;  /* Terminal green */
+  white-space: pre; /* Preserves whitespace */
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.05em; /* Slightly tighten character spacing */
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3); /* Green glow effect */
+  overflow: hidden;
+  display: inline-block;
+  transform-origin: center;
+}
