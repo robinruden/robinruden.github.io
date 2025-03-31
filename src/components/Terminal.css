@@ -120,20 +120,21 @@
 @media (max-width:450px) {
   /* Center and size the TV container to the mobile dimensions */
   .the-tv {
-    width: 375px;
-    height: 667px;
+    width: 200px;
+    height: 500x;
   }
   .tv-container {
     width: 300px;
-    height: 600px;
+    height: 300px;
     border-radius: 0.25rem;
     border-width: 1px;
   }
   .tv-terminal-content {
     width: 100%;
     /* Reserve some space for header/footer if needed */
-    height: calc(667px - 60px);
-    padding: rem;
+   /*  height: calc(667px - 60px); */
+   height: 300px;
+    padding: 0rem;
     font-size: 0.75rem; /* Optionally reduce font-size for mobile */
   }
   /* Adjust the project image size for mobile */
@@ -143,7 +144,7 @@
   }
   /* You may also want to adjust the terminal wrapper */
   .terminal-wrapper {
-    min-height: 60vh;
+    min-height: 90vh;
     padding: 0.25rem;
   }
 }
