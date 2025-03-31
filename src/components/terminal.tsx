@@ -42,6 +42,7 @@ export function Typewriter({
 
 
 export function Terminal() {
+  
   const [input, setInput] = useState("")
   const [history, setHistory] = useState<(string | JSX.Element)[]>([])
   const [bannerText, setBannerText] = useState("")
@@ -53,6 +54,8 @@ export function Terminal() {
   const terminalRef = useRef<HTMLDivElement>(null)
 
   const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
 
 
@@ -70,7 +73,7 @@ export function Terminal() {
     "CONTACT",
     " ",
     /* "DATE", */
-    "CLEAR",
+    "BACK",
   ]
   
   // Render a command element: header and blank lines are not clickable
@@ -135,18 +138,18 @@ export function Terminal() {
         ];
       }
     } else if (cmd === "about") {
-      response = ["Switching to ABOUT section..."];
+      response = [""];
     } else if (cmd === "date") {
       response = [new Date().toLocaleString()];
-    } else if (cmd === "clear") {
+    } else if (cmd === "back") {
       window.location.reload()
       return [];
     } else if (cmd === "skills" || cmd === "2") {
-      response = ["Switching to SKILLS section..."];
+      response = [""];
     } else if (cmd === "portfolio" || cmd === "1") {
-      response = ["Switching to PORTFOLIO section..."];
+      response = [""];
     } else if (cmd === "contact") {
-      response = ["Switching to CONTACT section..."];
+      response = [""];
     } else if (cmd.startsWith("open ")) {
       const id = parseInt(cmd.split(" ")[1]);
       const project = projectsData.find((p) => p.id === id);
@@ -223,16 +226,18 @@ export function Terminal() {
     },
   ]
 
-  function ProjectGrid({ projectsData }: { projectsData: Project[] }) {
-    const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
-
-    const handleProjectClick = (projectId: number) => {
-      setSelectedProjectId((prev) => (prev === projectId ? null : projectId));
-    };
-
+  function ProjectGrid({
+    projectsData,
+    selectedProjectId,
+    onProjectClick,
+  }: {
+    projectsData: Project[];
+    selectedProjectId: number | null;
+    onProjectClick: (id: number) => void;
+  }) {
     const selectedProject = projectsData.find(
       (project) => project.id === selectedProjectId
-    )
+    );
     
     return (
       <div>
@@ -241,7 +246,7 @@ export function Terminal() {
           <div
             key={project.id}
             className="cursor-pointer hover:opacity-90 transition"
-            onClick={() => handleProjectClick(project.id)} 
+            onClick={() => onProjectClick(project.id)} 
           >
             <img
               src={project.image}
@@ -298,6 +303,12 @@ export function Terminal() {
     }
   }
 
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [history, activeSection]);
+
   return (
     <div className="terminal-wrapper relative">
       <div className="the-tv relative">
@@ -348,7 +359,12 @@ export function Terminal() {
                     <div className="section-content mt-4 p-3 border border-green-500 rounded">
                       {activeSection === "about" && <AboutPage />}
                       {activeSection === "portfolio" && (
-                        <ProjectGrid projectsData={projectsData} key="portfolio-section" />
+                        <ProjectGrid
+                        projectsData={projectsData}
+                        selectedProjectId={selectedProjectId}
+                        onProjectClick={setSelectedProjectId}
+                        key="portfolio-section"
+                      />
                       )}
                       {activeSection === "skills" && (
                         <div className="skills-section">
@@ -396,7 +412,12 @@ export function Terminal() {
                   </div>
                 </div>
               ) : (
-                <div className="tv-terminal-content"></div>
+                <div className="tv-terminal-content">
+
+
+
+                </div>
+                
               )}
 
               <form onSubmit={handleSubmit} className={`px-3 py-2 border-t border-green-500/30 ${!powerOn && "hidden"}`}>

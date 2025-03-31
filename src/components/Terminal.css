@@ -38,6 +38,7 @@
   .tv-terminal-content {
     position: relative;
     height: 36rem;
+    max-height: 50rem;
     width: 55rem;
     padding: 0.75rem; 
     overflow-y: auto;
@@ -117,25 +118,31 @@
 
 
 
-@media (max-width:450px) {
+@media (max-width:560px) {
   /* Center and size the TV container to the mobile dimensions */
   .the-tv {
     width: 200px;
-    height: 500x;
+    height: 39rem;
+
+    /* border: 2px solid pink;  */
   }
   .tv-container {
-    width: 300px;
-    height: 300px;
+    width: 18rem;
+    height: 500px;
     border-radius: 0.25rem;
     border-width: 1px;
+
+    /* border: 2px solid pink; */ 
   }
   .tv-terminal-content {
     width: 100%;
     /* Reserve some space for header/footer if needed */
    /*  height: calc(667px - 60px); */
-   height: 300px;
+    height: 450px;
     padding: 0rem;
     font-size: 0.75rem; /* Optionally reduce font-size for mobile */
+
+    /* border: 2px solid pink;  */
   }
   /* Adjust the project image size for mobile */
   .project-image {
@@ -144,7 +151,9 @@
   }
   /* You may also want to adjust the terminal wrapper */
   .terminal-wrapper {
-    min-height: 90vh;
+    max-height: 90vh;
     padding: 0.25rem;
+
+    /* border: 2px solid pink;  */
   }
 }
