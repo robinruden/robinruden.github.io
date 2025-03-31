@@ -280,7 +280,7 @@ export function Terminal() {
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
+ /*  useEffect(() => {
     const handleClick = () => {
       if (powerOn) {
         inputRef.current?.focus()
@@ -288,7 +288,7 @@ export function Terminal() {
     }
     document.addEventListener("click", handleClick)
     return () => document.removeEventListener("click", handleClick)
-  }, [powerOn])
+  }, [powerOn]) */
 
 
   const togglePower = () => {
