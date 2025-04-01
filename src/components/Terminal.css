@@ -1,9 +1,21 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
 .terminal-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   padding: 1rem;
   box-sizing: border-box;
 
