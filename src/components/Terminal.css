@@ -26,6 +26,7 @@ body, html {
   .the-tv{
     height: 75%;
     width: 75%;
+    max-width: 55rem;
     display: flex;
     justify-content: center;
 
@@ -97,8 +98,26 @@ body, html {
 /* Large screens */
 @media (min-width: 1024px) {
   .tv-container {
-    width: 100%;
+    width: 55rem;
   }
+
+  .the-tv{
+ 
+    max-width: 45rem;
+    
+  
+    /* border: 2px solid pink;  */
+  }
+
+
+  .tv-terminal-content {
+  
+    max-width:  35rem;
+   
+  
+    /* border: 2px solid pink;  */
+  }
+
 }
 
 /* Medium screens (tablets) */
@@ -110,6 +129,23 @@ body, html {
   .tv-container {
     border-radius: 0.25rem;
   }
+}
+
+.the-tv{
+ 
+  max-width: 55rem;
+  
+
+  /* border: 2px solid pink;  */
+}
+
+
+.tv-terminal-content {
+  
+  max-width:  40rem;
+ 
+
+  /* border: 2px solid pink;  */
 }
 
 /* Small screens (phones) */
