@@ -241,11 +241,11 @@ export function Terminal() {
     
     return (
       <div>
-      <div className="grid grid-cols-2 gap-3 mt-2">
+      <div className="projects-grid">
         {projectsData.map((project) => (
           <div
             key={project.id}
-            className="cursor-pointer hover:opacity-90 transition"
+            className="project-item"
             onClick={() => onProjectClick(project.id)} 
           >
             <img
@@ -253,17 +253,17 @@ export function Terminal() {
               alt={project.title}
               className="project-image"
             />
-            <div className="text-xs mt-1 text-green-400">{project.title}</div>
+            <div className="project-title">{project.title}</div>
           </div>
         ))}
       </div>
        {selectedProject && (
-        <div className="mt-4 p-4 border border-green-500 rounded">
-          <h3 className="text-green-400 font-bold">{selectedProject.title}</h3>
-          <p className="text-green-500">{selectedProject.description}</p>
-          <p className="text-green-500">{selectedProject.stack}</p>
+        <div className="project-details">
+          <h3 className="project-details-title">{selectedProject.title}</h3>
+          <p className="project-details-text">{selectedProject.description}</p>
+          <p className="project-details-text">{selectedProject.stack}</p>
           <a
-            className="underline text-green-400 hover:text-green-200"
+            className="project-link"
             href={selectedProject.link}
             target="_blank"
             rel="noopener noreferrer"
