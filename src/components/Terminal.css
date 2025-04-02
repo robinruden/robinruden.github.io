@@ -14,30 +14,32 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  height: 100%;
+  
+  
+  height: 95vh;
+  width: 95vw;
   padding: 1rem;
 
-    /* border: 2px solid pink;  */
+  border: 2px solid pink; 
  
   }
 
-  .the-tv{
-    height: 75%;
-    width: 75%;
-    max-width: 55rem;
-    display: flex;
-    justify-content: center;
+.the-tv{
+  display: flex;
+  justify-content: center;
 
-    /* border: 2px solid pink;  */
+  height: 100%;
+  width: 100%;
+   /*  max-width: 55rem; */
+    
+
+  border: 2px solid pink; 
   }
 
 .tv-container {
   width: 100%;
-  max-width: 55rem;
-  height: auto;
-  aspect-ratio: 1.375; /* Preserves 55:40 ratio */
+  height: 30rem;
+  aspect-ratio: 1.375; 
   background-color: #000; 
   border: 2px solid #000;
   border-radius: 0.5rem; 
@@ -46,22 +48,37 @@ body, html {
 
     /* border: 2px solid pink;  */
   }
+
+  .tv-casing{
+    width: 100%;
+    height: 100%;
+    background-color: #262626; 
+    border-radius: 0.5rem;
+    padding: 1.25rem; 
+    padding-bottom: 3rem; 
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); 
+    border-top: 1px solid #404040; 
+
+    /* border: 2px solid pink;  */
+  }
+  
   
   
 .tv-terminal-content {
     position: relative;
-    height: 36rem;
-    max-height: 50rem;
-    width: 55rem;
+    height: 100rem;
+    /* max-height: 50rem; */
     padding: 0.75rem; 
-    overflow-y: auto;
+    /* overflow-y: auto; */
     font-family: monospace;
     font-size: 0.875rem;
     line-height: 1.25rem;
     color: #22c55e;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 
-    /* border: 2px solid pink;  */
+   /* border: 2px solid pink;  */
+
+    
   }
 
 
@@ -93,35 +110,21 @@ body, html {
     cursor: pointer;
   }
   
-  /* Media query for desktop view (Tailwind's lg: breakpoint ~1024px) */
-/* Media Queries */
-/* Large screens */
-@media (min-width: 1024px) {
+
+/* @media (min-width: 1024px) {
   .tv-container {
     width: 55rem;
   }
-
   .the-tv{
- 
-    max-width: 45rem;
-    
-  
-    /* border: 2px solid pink;  */
+    max-width: 45rem;  
   }
-
-
   .tv-terminal-content {
-  
     max-width:  35rem;
-   
-  
-    /* border: 2px solid pink;  */
   }
-
 }
+ */
 
-/* Medium screens (tablets) */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .terminal-wrapper {
     padding: 0.5rem;
   }
@@ -133,83 +136,48 @@ body, html {
 
 .the-tv{
  
-  max-width: 55rem;
-  
-
-  /* border: 2px solid pink;  */
+  max-width: 55rem; 
 }
 
 
-.tv-terminal-content {
-  
-  max-width:  40rem;
- 
-
-  /* border: 2px solid pink;  */
-}
-
-/* Small screens (phones) */
-/* @media (max-width: 640px) {
-  .terminal-wrapper {
-    min-height: 70vh;
-  }
-  
-  .tv-terminal-content {
-    padding: 0.5rem;
-  }
-  
-  .available-command {
-    padding: 0.5rem 0; 
-  }
+.tv-terminal-content {  
+  max-width:  40rem; 
 } */
 
 
 
 
-@media (max-width:560px) {
-  /* Center and size the TV container to the mobile dimensions */
+
+
+/* @media (max-width:560px) {
+  
   .the-tv {
     width: 75%;
-    height: 75%;
-
-    /* border: 2px solid pink;  */
+    height: 75%; 
   }
   .tv-container {
     width: 18rem;
     height: 500px;
     border-radius: 0.25rem;
-    border-width: 1px;
-
-    /* border: 2px solid pink; */ 
+    border-width: 1px;    
   }
   .tv-terminal-content {
     width: 100%;
-    /* Reserve some space for header/footer if needed */
-   /*  height: calc(667px - 60px); */
+   
     max-height: 460px;
     padding: 0rem;
-    font-size: 0.75rem; /* Optionally reduce font-size for mobile */
-
-    /* border: 2px solid pink;  */
+    font-size: 0.75rem;   
   }
-  /* Adjust the project image size for mobile */
+  
   .project-image {
     width: 320px;
     height: auto;
   }
-  /* You may also want to adjust the terminal wrapper */
+  
   .terminal-wrapper {
     max-height: 90vh;
     padding: 0.25rem;
-
-    /* border: 2px solid pink;  */
   }
 
-
-  
-   
-
-    /* border: 2px solid pink;  */
-  
-}
+} */
 

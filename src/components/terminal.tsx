@@ -312,7 +312,7 @@ export function Terminal() {
   return (
     <div className="terminal-wrapper relative">
       <div className="the-tv relative">
-        <div className="bg-neutral-800 rounded-lg p-5 pb-12 shadow-xl border-t border-neutral-700">
+        <div className="tv-casing">
           <div className="absolute top-0 left-0 right-0 h-6 bg-neutral-900 rounded-t-lg flex items-center justify-center">
             <div className="text-neutral-500 text-xs font-mono tracking-widest"></div>
           </div>
