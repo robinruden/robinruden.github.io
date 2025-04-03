@@ -1,7 +1,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  height: 99%;
+  height: 100%;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -16,9 +16,9 @@ body, html {
   align-items: center;
   
   
-  height: 95vh;
-  width: 95vw;
-  padding: 1rem;
+  height: 100%;
+  width: 100%;
+  padding: 0rem;
 
   /* border: 2px solid pink;  */
  
@@ -38,7 +38,7 @@ body, html {
 
 .tv-container {
   width: 100%;
-  height: 75vh;
+  height: 72vh;
   aspect-ratio: 1.375; 
   background-color: #000; 
   border: 2px solid #000;
@@ -234,17 +234,16 @@ body, html {
   
   .the-tv {
     width: 90vw;
-    height: 100%; 
+    height: 90%; 
   }
   
   .tv-container {
     width: 100%;
-    height: 75vh;
+    height: 71vh;
     aspect-ratio: 1.375; 
-    background-color: #000; 
-    border: 2px solid #000;
+   
     border-radius: 0.5rem; 
-    overflow: auto;
+    overflow:scroll;
     position: relative;
   
       /* border: 2px solid pink;  */
