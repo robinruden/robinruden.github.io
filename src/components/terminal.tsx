@@ -136,20 +136,26 @@ export function Terminal() {
         response = [
           "Commands are already displayed above. Type 'CLEAR' first to reset.",
         ];
+      } else {
+        response = [...AVAILABLE_COMMANDS_LIST];
       }
     } else if (cmd === "about") {
-      response = [""];
+      setActiveSection("about");
+      return [];  
     } else if (cmd === "date") {
       response = [new Date().toLocaleString()];
     } else if (cmd === "back") {
       window.location.reload()
       return [];
     } else if (cmd === "skills" || cmd === "2") {
-      response = [""];
+      setActiveSection("skills");
+      return []; 
     } else if (cmd === "portfolio" || cmd === "1") {
-      response = [""];
+      setActiveSection("portfolio");
+      return [];
     } else if (cmd === "contact") {
-      response = [""];
+      setActiveSection("contact");
+      return [];
     } else if (cmd.startsWith("open ")) {
       const id = parseInt(cmd.split(" ")[1]);
       const project = projectsData.find((p) => p.id === id);
@@ -161,11 +167,15 @@ export function Terminal() {
           project.link,
         ];
       } else {
-        response = ["PROJECT NOT FOUND."];
+        response = [`Project with ID ${id} not found.`];
       }
+    } else if (cmd === "clear") {
+      setHistory([]);
+      return []; // Return an empty array to prevent adding "clear" to history
     } else {
       response = [`COMMAND NOT FOUND: ${cmd.toUpperCase()}`];
     }
+  
     return response;
   };
 
@@ -173,25 +183,27 @@ export function Terminal() {
   // A helper function that appends the command and its response to the history.
   const handleCommand = (command: string) => {
     const lowerCmd = command.trim().toLowerCase();
-  
-   // Update active section for section commands.
-    // Toggle: if already active, set to null; otherwise, set to new section.
-    if (["about", "portfolio", "skills", "contact"].includes(lowerCmd)) {
-      setActiveSection((prev) => (prev === lowerCmd ? null : lowerCmd));
-    }
-  
     const responses = processCommand(command);
-    setHistory((prev) => [...prev, `> ${command}`, ...responses]);
+  
+    // Only add the command to history if it's not a section command
+    if (!["about", "portfolio", "skills", "contact"].includes(lowerCmd)) {
+      setHistory((prev) => [...prev, `> ${command}`, ...responses]);
+    }
   };
 
   // Handler for form submit (using the typed input)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (input.trim() === "") return;
-    handleCommand(input.trim());
+  
+    const command = input.trim().toLowerCase();
+    const response = processCommand(command);
+  
+    if (response && response.length > 0) {
+      setHistory((prev) => [...prev, `> ${input}`, ...response]);
+    }
     setInput("");
   };
-
   // Handler for clicking on an available command
   const handleCommandClick = (cmd: string) => {
     handleCommand(cmd);
@@ -401,15 +413,16 @@ export function Terminal() {
                     </div>
                   )}
 
-                  <div className="flex items-center">
+                    <div className="flex items-center"  style={{ transform: 'translateY(1vh)' }}>
                     <ChevronRight className="h-4 w-4 mr-1 text-green-500" />
+                    
                     <span>{input}</span>
                     <span
-                      className={`w-2 h-4 bg-green-500 ml-0.5 ${
-                        cursorVisible ? "opacity-100" : "opacity-0"
+                      className={`w-2 h-4 bg-green-500 ml-0.5 inline-block ${
+                      cursorVisible ? "opacity-100" : "opacity-0" 
                       }`}
                     ></span>
-                  </div>
+                    </div>
                 </div>
               ) : (
                 <div className="tv-terminal-content">
