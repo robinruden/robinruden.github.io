@@ -299,7 +299,7 @@ export function Terminal() {
   const togglePower = () => {
     setPowerOn(!powerOn)
     if (!powerOn) {
-      setHistory(["ROBINS PORTFOLIO V7 (c) 2025", "READY..."])
+      setHistory(["ROBINS PORTFOLIO (c) 2025", "READY..."])
     }
   }
 
