@@ -1,174 +1,33 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-:root {
-  --foreground-rgb: 0, 255, 0;
-  --background-rgb: 0, 0, 0;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-
-
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-}
-
-
-/* body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 255, 0, 0.05),
-    rgba(0, 255, 0, 0.05) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none; 
-}
- */
-
-
-.bg-scan-lines {
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgba(0, 255, 0, 0.15),
-    rgba(0, 255, 0, 0.15) 1000px,
-    transparent 100px,
-    transparent 200px
-  );
-  background-size: 100% 2px;
-}
-
-@keyframes flicker {
-  0% {
-    opacity: 0.9;
-  }
-  5% {
-    opacity: 0.8;
-  }
-  10% {
-    opacity: 0.9;
-  }
-  15% {
-    opacity: 0.85;
-  }
-  20% {
-    opacity: 0.9;
-  }
-  25% {
-    opacity: 0.8;
-  }
-  30% {
-    opacity: 0.9;
-  }
-  35% {
-    opacity: 0.85;
-  }
-  40% {
-    opacity: 0.9;
-  }
-  45% {
-    opacity: 0.85;
-  }
-  50% {
-    opacity: 0.9;
-  }
-  55% {
-    opacity: 0.85;
-  }
-  60% {
-    opacity: 0.9;
-  }
-  65% {
-    opacity: 0.8;
-  }
-  70% {
-    opacity: 0.9;
-  }
-  75% {
-    opacity: 0.85;
-  }
-  80% {
-    opacity: 0.9;
-  }
-  85% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.9;
-  }
-  95% {
-    opacity: 0.85;
-  }
-  100% {
-    opacity: 0.9;
-  }
-}
-
-.animate-flicker {
-  animation: flicker 0.04s infinite;
-}
-
-/* CRT monitor effects */
-.shadow-glow-amber {
-  box-shadow: 0 0 5px 1px rgba(245, 158, 11, 0.7);
-}
-
-/* Screen vignette effect */
-.bg-vignette {
-  background: radial-gradient(circle at center, transparent 90%, rgba(0, 0, 0, 0.6) 100%);
-}
-
-/* Plastic texture */
-.bg-plastic {
-  background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.05) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 4px 4px;
-}
-
 /* @font-face {
-  font-family: 'MyFont-1';
-  src: url('/fonts/VT323-Regular.ttf') format('woff2');
+  font-family: "MS Sans Serif";
+  src: url("/ms-sans-serif.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 } */
 
+:root {
+  /* font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif; */
+  font-family: "Courier New", monospace;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-.scan-line-overlay {
-  position: relative;
+  --darkblue: rgb(44, 75, 183);
+  --lightblue: rgb(96, 143, 242);
 }
 
-.scan-line-overlay::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 255, 0, 0.1),
-    rgba(0, 255, 0, 0.1) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 1;
+body, html {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
 }

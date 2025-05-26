@@ -1,0 +1,39 @@
+.notepad {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+}
+
+.notepad-textarea {
+ flex: 1;
+  resize: none;
+  background-color: rgba(255, 255, 255, 0.697);
+  color: black;
+  
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+
+  
+  margin: 0;
+  box-sizing: border-box;
+  padding: 4px;
+  outline: none;
+
+  overflow: hidden;
+}
+
+.notepad-textarea::placeholder {
+  color: #404040;
+  opacity: 0.8;
+  font-weight: normal;
+  font-size: 12px;
+  font-family: "Lucida Console", Monaco, monospace;
+}

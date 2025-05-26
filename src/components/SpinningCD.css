@@ -1,0 +1,34 @@
+.cd-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: grab;
+   
+    
+    overflow: hidden;
+  
+    
+  }
+  
+  .cd-container:active {
+    cursor: grabbing;
+  }
+  
+  /* Optional: Add a retro frame for the PS1 jewel case */
+/*   .cd-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 2px solid #bdbdbd;
+    border-radius: 8px;
+    z-index: 1;
+  } */
+  
+  /* Responsive adjustments */
+ /*  @media (max-width: 768px) {
+    .cd-container {
+      width: 80vw;
+      height: 50vh;
+    }
+  } */
