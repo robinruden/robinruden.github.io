@@ -15,9 +15,9 @@ import Resume from "./components/Resume"
 
 const SIZE_MAP = {
   notepad: { width: 200, height: 200},
-  SpinningCD: {width: 150, height: 150},
-  RexicoCity: {width: 250, height: 200},
-  contact: {width: 300, height: 300},
+  SpinningCD: {width: 150, height: 300},
+  RexicoCity: {width: 250, height: 400},
+  contact: {width: 300, height: 350},
   amiga: {width: 250, height: 200},
   resume: {width: 250, height: 360},
 }

@@ -6,7 +6,7 @@ import { useState } from "react"
 function Resume() {
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf'; 
+    link.href = '/Resume.pdf'; 
     link.download = 'Robin_Ruden_Resume.pdf';
     document.body.appendChild(link);
     link.click();
