@@ -19,6 +19,7 @@ function Desktop({ onIconClick }) {
      { id: "RexicoCity", name: "Rexico City.exe", icon :"/img/rexico-logga.ico", defaultPosition: {x: 10, y: 40}},
      { id: "contact", name: "Contact.exe", icon :"/img/contact-1.ico", defaultPosition: {x: 10, y: 400}},
      { id: "amiga", name: "Amiga.exe", icon :"/img/amiga.ico", defaultPosition: {x: 10, y: 200}},
+      { id: "resume", name: "Resume.exe", icon :"/img/resume.ico", defaultPosition: {x: 300, y: 300} }
   ]
 
   useEffect(() => {
@@ -48,6 +49,7 @@ function Desktop({ onIconClick }) {
               ${icon.id === "RexicoCity" ? "rexico-icon" : ""}
               ${icon.id === "contact" ? "contact-icon" : ""}
               ${icon.id === "amiga" ? "amiga-icon" : ""}
+              ${icon.id === "resume" ? "resume-icon" : ""}
               `}
             onClick={() => onIconClick(icon.id)}
             onTouchEnd={() => onIconClick(icon.id)}

@@ -6,6 +6,7 @@ const positionMap = {
   contact:    { x: 250, y: 140 },
   RexicoCity: { x: 180, y: 200 },
   amiga:      { x: 200, y: 70 },
+  resume:     { x: 300, y: 300 },
 };
 
 
