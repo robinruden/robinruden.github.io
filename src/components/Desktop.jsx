@@ -22,12 +22,12 @@ function Desktop({ onIconClick }) {
       { id: "resume", name: "Resume.exe", icon :"/img/resume.ico", defaultPosition: {x: 250, y: 100} }
   ]
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!hasOpenedNotepad) {
        onIconClick("notepad")
        setHasOpenedNotepad(true)
     }
-  }, [hasOpenedNotepad, onIconClick])   
+  }, [hasOpenedNotepad, onIconClick])   */ 
        
   return (
  <div className="desktop">
