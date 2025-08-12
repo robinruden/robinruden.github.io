@@ -21,7 +21,7 @@ const SIZE_MAP = {
   contact: {width: 300, height: 350},
   amiga: {width: 250, height: 200},
   resume: {width: 250, height: 360},
-  Folder: {width: 100, height: 100}
+  folder: {width: 250, height: 250}
 }
 
 function App() {

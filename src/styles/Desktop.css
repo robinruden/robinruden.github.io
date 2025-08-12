@@ -31,11 +31,16 @@
   
 }
 
-.desktop-icon:hover .icon-text {
+/* .desktop-icon:hover {
   background-color: var(--darkblue);
-  color: white;
-}
+  width: fit-content;
+} */
 
+.icon-text:hover {
+  color: var(--white);
+  width: fit-content;
+  /* border: solid 2px black;  */
+}
 
 .desktop-icon.notepad-icon .icon-image {
   width: 3rem;

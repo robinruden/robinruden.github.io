@@ -1,4 +1,4 @@
-.rexico-city {
+/* .rexico-city {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,19 +14,19 @@
   background-position: center;
   background-color: #00000000;
   box-sizing: border-box;
-}
+} */
 
 
 
-.rexico-city img{
+/* .rexico-city img{
     width: 14.5rem;
     height: 9rem;
     display: block;
     object-fit: cover;
-}
+} */
 
 
-.rexico-caption {
+/* .rexico-caption {
   margin-top: 12px;
   text-align: center;
   font-family: 'MS Sans Serif', Arial, sans-serif;
@@ -36,8 +36,11 @@
   padding: 4px 12px;
   border: 1px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
+} */
+.folder{
+    background-color: white;
+    
 }
-
 
 .tech-description {
   
@@ -63,7 +66,7 @@
   box-sizing: border-box;
   margin-top: 8px;
   overflow-y: auto;
-  max-height: 100px; /* Adjust as needed */
+  max-height: 100px; 
   
   
   
