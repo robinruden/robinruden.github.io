@@ -20,6 +20,7 @@ const SIZE_MAP = {
   contact: {width: 300, height: 350},
   amiga: {width: 250, height: 200},
   resume: {width: 250, height: 360},
+  folder: {width: 300, height: 400}
 }
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
 
   const getWindowTitle = (type) => {
     switch (type) {
+      case "folder":
+        return "Folder"
       case "notepad":
         return "About me"
       case "mycomputer":
@@ -129,6 +132,7 @@ function App() {
           {window.type === "contact" && <Contact />}
           {window.type === "amiga" && <Amiga />}
           {window.type === "resume" && <Resume />}
+          {window.type === "folder" && <Folder />}
         </Window>
       ))}
 
