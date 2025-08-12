@@ -12,6 +12,7 @@ import RexicoCity from "./components/RexicoCity"
 import Contact from "./components/Contact"
 import Amiga from "./components/Amiga"
 import Resume from "./components/Resume"
+import Folder from "./components/Folder"
 
 const SIZE_MAP = {
   notepad: { width: 200, height: 200},
@@ -20,7 +21,7 @@ const SIZE_MAP = {
   contact: {width: 300, height: 350},
   amiga: {width: 250, height: 200},
   resume: {width: 250, height: 360},
-  folder: {width: 300, height: 400}
+  Folder: {width: 100, height: 100}
 }
 
 function App() {
