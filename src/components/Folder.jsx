@@ -6,12 +6,11 @@ import "./Folder.css"
 import { useState } from "react"
 
 const folderIcons = [
-  { id: "project1", name: "Rexico City", icon: "/img/rexico-logga.ico" },
-  { id: "project2", name: "Amiga Dashboard", icon: "/img/amiga.ico" },
+  { id: "RexicoCity", name: "Rexico City.exe", icon: "/img/rexico-logga.ico" },
+  { id: "amiga", name: "Amiga.exe", icon: "/img/amiga.ico" },
   // Add more icons as needed
 ]
 
-{window.type === "folder" && <Folder onIconClick={openWindow} />}
 
 function Folder({ onIconClick }) {
   return (
