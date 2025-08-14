@@ -104,3 +104,28 @@
   
   
 }
+
+.folder-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.folder-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon-image {
+  width: 48px;
+  height: 48px;
+}
+
+.icon-text {
+  margin-top: 4px;
+  font-size: 12px;
+  text-align: center;
+}
