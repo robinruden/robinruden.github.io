@@ -133,7 +133,7 @@ function App() {
           {window.type === "contact" && <Contact />}
           {window.type === "amiga" && <Amiga />}
           {window.type === "resume" && <Resume />}
-          {window.type === "folder" && <Folder />}
+          {window.type === "folder" && <Folder onIconClick={openWindow} />}
         </Window>
       ))}
 

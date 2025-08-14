@@ -11,6 +11,8 @@ const folderIcons = [
   // Add more icons as needed
 ]
 
+{window.type === "folder" && <Folder onIconClick={openWindow} />}
+
 function Folder({ onIconClick }) {
   return (
     <div className="folder-content">
