@@ -22,6 +22,7 @@
   height: 10rem;
   /* font-family: 'MS Sans Serif', Arial, sans-serif; */
   font-size: 12px;
+  overflow: hidden; 
 }
 
 .rexico-city img{

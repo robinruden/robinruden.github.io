@@ -3,7 +3,7 @@
 import "./RexicoCity.css"
 import { useState } from "react"
 
-function RecicoCity() {
+function RexicoCity() {
   
 
   return (
@@ -24,4 +24,4 @@ function RecicoCity() {
   )
 }
 
-export default RecicoCity
+export default RexicoCity
