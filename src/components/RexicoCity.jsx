@@ -9,7 +9,7 @@ function RecicoCity() {
   return (
     <div className="rexico-city">
        <div className="tech-description">
-        <h3>Technologies used in this poject:</h3>
+        <h2>Welcome to Rexico City. Feel free to explore our brand new dinosaur park. Your journey starts here!</h2>
         <ul>
           <li><strong>Vue</strong> - Component-based UI framework</li>
           <li><strong>Vite</strong> - Fast build tool and development server</li>
