@@ -2,81 +2,81 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  width: auto;
-  height: 23rem;
- 
-  /* background-size: cover;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-size: cover;
   background-position: center;
-  background-color: #00000000;
-  box-sizing: border-box; */
-
-  border: solid pink;
+  background-color: #c0c0c093;
+  box-sizing: border-box;
+  gap: 1rem;
+ /*  border: solid pink; */
 }
 
 .rexico-city h2 {
   font-size: 0.8rem;
-  color: #000;
-  text-align: center;
-  margin-bottom: 1rem;
-
+  margin: 0;
+  padding: 8px;
+  color: black;
+  
+  line-height: 1;
   /* background-color: rgba(143, 208, 255, 0.904); */
 }
 
 .rexico-city h4 {
   font-size: 0.8rem;
+  line-height: 1;
+  font-family: "MS Sans Serif", sans-serif;
+  color: black;
+  margin: 0 0 8px 0;
+  align-self: flex-start;
   
-  text-align: center;
-  margin-bottom: 0.1rem;
-
   
 }
 
 .rexico-city li {
-  font-size: 0.8rem;
-  text-align: center;
-  margin-bottom: 0.1rem;
+  font-size: 11px;
+  font-family: "MS Sans Serif", sans-serif;
+  margin-bottom: 4px;
+  padding-left: 16px;
+  position: relative;
+  align-self: flex-start;
+  line-height: 1.5;
+  width: 100%;
 }
 
-.rexico-city ul {
-  list-style-type: none;
-  padding: 0;
-}
+
 
 .tech-description{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
- 
-  height: 25rem;
- 
-  font-size: 12px;
 
-  border: solid pink;
+  height: 30rem;
+  width: 60rem;
+  
+  overflow-y: hidden;
+  /* border: solid pink; */
 }
 
 
 .rexico-img img {
- 
+  display: block;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 12rem;
+   height: auto;
   width: 20rem;
+   cursor: pointer;
+   object-fit: contain;
+}
+
+.rexico-img img:hover {
+  border-color: #000080 #87ceeb #87ceeb #000080;
 }
 
 
-/* .rexico-caption {
-  margin-top: 12px;
-  text-align: center;
-  font-family: 'MS Sans Serif', Arial, sans-serif;
-  font-size: 12px;
-  color: #000;
-  background-color: #c0c0c0;
-  padding: 4px 12px;
-  border: 1px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-} */
 
 
 
