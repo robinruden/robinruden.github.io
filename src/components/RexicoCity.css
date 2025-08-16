@@ -26,12 +26,13 @@
 }
 
 
-.rexico-img{
+.rexico-img img {
+ 
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 23rem;
-   width: 14.5rem;
+  height: 12rem;
+  width: 20rem;
 }
 
 
