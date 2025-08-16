@@ -8,8 +8,8 @@ function RexicoCity() {
 
   return (
     <div className="rexico-city">
-       <div className="tech-description">
-        <h2>Welcome to Rexico City. Your journey starts here!</h2>
+       {/* <div className="tech-description"> */}
+        <h2>Welcome to Rexico City. Your journey starts here! Just click on the image to enter the site</h2>
         
           
         
@@ -18,9 +18,10 @@ function RexicoCity() {
       <img src="/img/rexico.png" alt="" />
       </a>
       </div>
+      <h4>Technoligies used:</h4>
       <li><strong>Vue</strong> - Component-based UI framework</li>
       <li><strong>Vite</strong> - Fast build tool and development server</li>
-      </div>
+      {/* </div> */}
     </div>
   )
 }
