@@ -14,17 +14,22 @@ function Projects({ onIconClick }) {
   return (
     
      <div className="folder-content">
+      
       {folderIcons.map(icon => {
         const nodeRef = useRef(null)
         return (
           <Draggable
+          
             key={icon.id}
             nodeRef={nodeRef}
             bounds="parent"
             defaultPosition={icon.defaultPosition}
             handle=".icon-image"
           >
+            
+
             <div
+            
               ref={nodeRef}
               className="folder-icon"
               onClick={() => onIconClick && onIconClick(icon.id)}
@@ -35,6 +40,7 @@ function Projects({ onIconClick }) {
           </Draggable>
         )
       })}
+      
     </div>
   )
 }
