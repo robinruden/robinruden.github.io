@@ -21,7 +21,7 @@ const SIZE_MAP = {
   contact: {width: 300, height: 350},
   amiga: {width: 250, height: 200},
   resume: {width: 250, height: 360},
-  projects: {width: 300, height: 300}
+  Projects: {width: 300, height: 300}
 }
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
 
   const getWindowTitle = (type) => {
     switch (type) {
-      case "projects":
+      case "Projects":
         return "Projects"
       case "notepad":
         return "About me"
