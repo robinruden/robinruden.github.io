@@ -1,5 +1,3 @@
-"use client"
-
 import "./Resume.css"
 import { useState } from "react"
 

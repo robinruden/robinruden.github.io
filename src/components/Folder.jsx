@@ -1,5 +1,3 @@
-"use client"
-
 import "./Folder.css"
 import Draggable from 'react-draggable'
 
@@ -8,7 +6,7 @@ import { useState, useRef } from "react"
 const folderIcons = [
   { id: "RexicoCity", name: "Rexico City.exe", icon: "/img/rexico-logga.ico" },
   { id: "amiga", name: "Amiga.exe", icon: "/img/amiga.ico" },
-  // Add more icons as needed
+  
 ]
 
 
