@@ -12,7 +12,7 @@ import RexicoCity from "./components/RexicoCity"
 import Contact from "./components/Contact"
 import Amiga from "./components/Amiga"
 import Resume from "./components/Resume"
-import Folder from "./components/Folder"
+import Projects from "./components/Folder"
 
 const SIZE_MAP = {
   notepad: { width: 200, height: 200},
@@ -21,7 +21,7 @@ const SIZE_MAP = {
   contact: {width: 300, height: 350},
   amiga: {width: 250, height: 200},
   resume: {width: 250, height: 360},
-  folder: {width: 500, height: 400}
+  projects: {width: 300, height: 300}
 }
 
 function App() {
@@ -48,8 +48,8 @@ function App() {
 
   const getWindowTitle = (type) => {
     switch (type) {
-      case "folder":
-        return "Folder"
+      case "projects":
+        return "Projects"
       case "notepad":
         return "About me"
       case "mycomputer":
@@ -133,7 +133,7 @@ function App() {
           {window.type === "contact" && <Contact />}
           {window.type === "amiga" && <Amiga />}
           {window.type === "resume" && <Resume />}
-          {window.type === "folder" && <Folder onIconClick={openWindow} />}
+          {window.type === "Projects" && <Projects onIconClick={openWindow} />}
         </Window>
       ))}
 

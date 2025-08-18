@@ -7,7 +7,7 @@ const positionMap = {
   RexicoCity: { x: 180, y: 200 },
   amiga:      { x: 200, y: 70 },
   resume:     { x: 100, y: 150 },
-  folder:     { x: 100, y: 100 },
+  projects:     { x: 100, y: 100 },
 };
 
 

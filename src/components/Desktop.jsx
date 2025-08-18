@@ -20,7 +20,7 @@ function Desktop({ onIconClick }) {
      { id: "contact", name: "Contact.exe", icon :"/img/contact-1.ico", defaultPosition: {x: 10, y: 400}},
      { id: "amiga", name: "Amiga.exe", icon :"/img/amiga.ico", defaultPosition: {x: 10, y: 200}},
       { id: "resume", name: "Resume.exe", icon :"/img/resume.ico", defaultPosition: {x: 250, y: 100} },
-      { id: "folder", name: "Projects", icon: "/img/folder-open.ico", defaultPosition: { x: 10, y: 300 } }
+      { id: "projects", name: "Projects", icon: "/img/folder-open.ico", defaultPosition: { x: 10, y: 300 } }
   ]
 
   /* useEffect(() => {
@@ -51,7 +51,7 @@ function Desktop({ onIconClick }) {
               ${icon.id === "contact" ? "contact-icon" : ""}
               ${icon.id === "amiga" ? "amiga-icon" : ""}
               ${icon.id === "resume" ? "resume-icon" : ""}
-              ${icon.id === "folder" ? "folder-icon" : ""}
+              ${icon.id === "projects" ? "folder-icon" : ""}
               `}
             onClick={() => onIconClick(icon.id)}
             onTouchEnd={() => onIconClick(icon.id)}

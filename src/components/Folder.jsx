@@ -12,7 +12,7 @@ const folderIcons = [
 ]
 
 
-function Folder({ onIconClick }) {
+function Projects({ onIconClick }) {
   return (
     
      <div className="folder-content">
@@ -41,6 +41,6 @@ function Folder({ onIconClick }) {
   )
 }
 
-export default Folder
+export default Projects
 
 
