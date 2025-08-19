@@ -6,7 +6,6 @@ import Window from "./components/Window"
 import Taskbar from "./components/Taskbar"
 import Desktop from "./components/Desktop"
 import Notepad from "./components/Notepad"
-/* import MyComputer from "./components/MyComputer" */
 import SpinningCD from "./components/SpinningCD"
 import RexicoCity from "./components/RexicoCity"
 import Contact from "./components/Contact"
