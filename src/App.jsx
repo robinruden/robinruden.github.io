@@ -30,6 +30,17 @@ function App() {
   const [startMenuOpen, setStartMenuOpen] = useState(false)
 
   const openWindow = (windowType) => {
+
+    if (windowType === "RexicoCity") {
+    window.open(
+      "https://rexicocity.netlify.app",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setStartMenuOpen(false);
+    return;
+  }
+
     const id = Date.now()
     const size = SIZE_MAP[windowType] || {}
     const newWindow = { 
