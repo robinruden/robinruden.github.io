@@ -41,6 +41,16 @@ function App() {
     return;
   }
 
+    if (windowType === "amiga") {
+    window.open(
+      "https://amigadashboard.netlify.app",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setStartMenuOpen(false);
+    return;
+  }
+
     const id = Date.now()
     const size = SIZE_MAP[windowType] || {}
     const newWindow = { 
