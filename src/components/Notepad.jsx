@@ -8,14 +8,9 @@ function Notepad() {
 
   return (
     <div className="notepad">
-     {/*  <div className="notepad-menu">
-        <div className="menu-item">File</div>
-        <div className="menu-item">Edit</div>
-        <div className="menu-item">Search</div>
-        <div className="menu-item">Help</div>
-      </div> */}
       <textarea
         className="notepad-textarea"
+        aria-label="About me notes"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Welcome to my portfolio

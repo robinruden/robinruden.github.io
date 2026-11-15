@@ -85,3 +85,7 @@
   font-size: 11px;
   padding: 0 4px;
 }
+
+.taskbar-buttons { overflow-x: auto; min-width: 0; }
+.taskbar-button { flex-shrink: 0; }
+.taskbar-tray { flex-shrink: 0; }

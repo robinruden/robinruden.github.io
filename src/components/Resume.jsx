@@ -1,23 +1,11 @@
 import "./Resume.css"
-import { useState } from "react"
 
-function Resume() {
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/Resume.pdf'; 
-    link.download = 'Robin_Ruden_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
+export default function Resume() {
   return (
     <div className="resume">
-      <div onClick={handleDownload} style={{ cursor: 'pointer' }}>
-        <img src="/img/resume-img.png" alt="Download Resume" />
-      </div>
+      <a href="/Resume.pdf" download="Robin_Ruden_Resume.pdf">
+        <img src="/img/resume-img.png" alt="Download Robin Rudén’s resume (PDF)" />
+      </a>
     </div>
   )
 }
-
-export default Resume

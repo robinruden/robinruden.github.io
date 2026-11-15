@@ -1,7 +1,6 @@
 "use client"
 
 import "./RexicoCity.css"
-import { useState } from "react"
 
 function RexicoCity() {
   
@@ -13,7 +12,7 @@ function RexicoCity() {
         
           
         
-      <div class="rexico-img">
+      <div className="rexico-img">
       <a href="https://rexicocity.netlify.app" target="_blank" rel="noopener noreferrer">
       <img src="/img/rexico.png" alt="" />
       </a>

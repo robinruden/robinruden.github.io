@@ -119,3 +119,17 @@
   filter: blur(5px);
   z-index: -1; 
 } */
+.title-bar { touch-action: none; flex-shrink: 0; }
+.title-bar-text { pointer-events: none; }
+.window-body { min-height: 0; }
+.title-bar:focus-visible { outline: 2px dotted white; outline-offset: -2px; }
+.title-bar-controls button[aria-label^="Close"]::before,
+.title-bar-controls button[aria-label^="Close"]::after {
+  content: "";
+  width: 10px;
+  height: 1px;
+  background: #000;
+  position: absolute;
+}
+.title-bar-controls button[aria-label^="Close"]::before { transform: rotate(45deg); }
+.title-bar-controls button[aria-label^="Close"]::after { transform: rotate(-45deg); }

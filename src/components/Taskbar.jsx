@@ -1,65 +1,26 @@
-"use client"
-
-import { useEffect } from "react"
-
-import { useState } from "react"
-
+import { useEffect, useState } from "react"
+import { programs } from "../data/programs"
 import "../styles/Taskbar.css"
-import StartMenu from "./StartMenu"
 
-function Taskbar({
-  openWindows,
-  minimizedWindows,
-  activeWindow,
-  startMenuOpen,
-  onWindowSelect,
-  onMinimizedSelect,
-  onStartClick,
-}) {
-  const currentTime = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+const currentTime = () => new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+
+export default function Taskbar({ windows, activeWindow, onWindowSelect }) {
   const [time, setTime] = useState(currentTime)
-
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))
-    }, 1000)
-
+    const timer = setInterval(() => setTime(currentTime()), 1000)
     return () => clearInterval(timer)
   }, [])
 
   return (
     <div className="taskbar">
-      {/* <div className="start-button-container">
-        <button className="start-button" onClick={onStartClick}>
-          <img src="/img/windows.ico" alt="Windows" className="win-logo" />
-          <span>Start</span>
-        </button>
-        {startMenuOpen && <StartMenu onProgramClick={onStartClick} />}
-      </div> */}
-
       <div className="taskbar-buttons">
-        {openWindows.map((window) => (
-          <button
-            key={window.id}
-            className={`taskbar-button ${activeWindow === window.id ? "active" : ""}`}
-            onClick={() => onWindowSelect(window.id)}
-          >
-            {window.title}
-          </button>
-        ))}
-
-        {minimizedWindows.map((window) => (
-          <button key={window.id} className="taskbar-button" onClick={() => onMinimizedSelect(window.id)}>
-            {window.title}
+        {[...windows].sort((a, b) => a.type.localeCompare(b.type)).map((item) => (
+          <button key={item.id} type="button" className={`taskbar-button ${activeWindow === item.id ? "active" : ""}`} aria-pressed={activeWindow === item.id} onClick={() => onWindowSelect(item.id)}>
+            {programs[item.type].title.replace(/\.exe$/, "")}
           </button>
         ))}
       </div>
-
-      <div className="taskbar-tray">
-        <div className="taskbar-time">{time}</div>
-      </div>
+      <div className="taskbar-tray"><div className="taskbar-time">{time}</div></div>
     </div>
   )
 }
-
-export default Taskbar

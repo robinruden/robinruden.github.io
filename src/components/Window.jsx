@@ -1,110 +1,70 @@
 import { useState, useRef, useEffect } from "react"
 import "../styles/Window.css"
 
-const positionMap = {
-  notepad:    { x: 100, y: 120 },
-  contact:    { x: 250, y: 140 },
-  RexicoCity: { x: 180, y: 200 },
-  amiga:      { x: 200, y: 70  },
-  resume:     { x: 100, y: 150 },
-  projects:   { x: 100, y: 100 },
-};
+function viewport() {
+  return { width: document.documentElement.clientWidth, height: window.innerHeight - 28 }
+}
 
-
-function Window({ 
-  id, 
-  title, 
-  children, 
-  defaultPosition,
-  active, 
-  zIndex, 
-  width = 200,
-  height = 200,
-  onClose, 
-  onMinimize, 
-  onActivate 
-}) {
-
-    const fallbackCascade = {
-    x: 35 + (parseInt(id, 10) % 3) * 10,  
-    y: 100 + (parseInt(id, 10) % 10) * 10,
-  };
-
-
-  const initialPos = 
-  defaultPosition ??
-  positionMap[id] ?? 
-  fallbackCascade
-  
-  const [dragging, setDragging] = useState(false)
-  const [offset, setOffset] = useState({ x: 0, y: 0 })
-  const [size, setSize] = useState({ width, height})
-  const windowRef = useRef(null)
-  const [position, setPosition] = useState(initialPos)
-
-  const handleMouseDown = (e) => {
-    if (e.target.classList.contains("title-bar")) {
-      setDragging(true)
-      setOffset({
-        x: e.clientX - position.x,
-        y: e.clientY - position.y,
-      })
-      onActivate()
-    }
+function constrain(position, size, area) {
+  return {
+    x: Math.max(0, Math.min(position.x, area.width - size.width)),
+    y: Math.max(0, Math.min(position.y, area.height - size.height)),
   }
+}
 
-  const handleMouseMove = (e) => {
-    if (dragging) {
-      setPosition({
-        x: e.clientX - offset.x,
-        y: e.clientY - offset.y,
-      })
-    }
-  }
-
-  const handleMouseUp = () => {
-    setDragging(false)
-  }
+export default function Window({ title, children, defaultPosition, active, zIndex, width = 200, height = 200, onClose, onActivate }) {
+  const [area, setArea] = useState(viewport)
+  const [position, setPosition] = useState(defaultPosition ?? { x: 35, y: 100 })
+  const drag = useRef(null)
+  const size = { width: Math.min(width, area.width), height: Math.min(height, area.height) }
+  const visiblePosition = constrain(position, size, area)
 
   useEffect(() => {
-    if (dragging) {
-      document.addEventListener("mousemove", handleMouseMove)
-      document.addEventListener("mouseup", handleMouseUp)
-    } else {
-      document.removeEventListener("mousemove", handleMouseMove)
-      document.removeEventListener("mouseup", handleMouseUp)
-    }
+    const resize = () => setArea(viewport())
+    window.addEventListener("resize", resize)
+    return () => window.removeEventListener("resize", resize)
+  }, [])
 
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      document.removeEventListener("mouseup", handleMouseUp)
-    }
-  }, [dragging])
+  const finishDrag = () => { drag.current = null }
 
   return (
-    <div
+    <section
       className={`window ${active ? "active" : ""}`}
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        width: `${width}px`,
-        height: `${height}px`,
-        zIndex,
-      }}
-      ref={windowRef}
-      onMouseDown={onActivate}
+      aria-label={title}
+      style={{ left: visiblePosition.x, top: visiblePosition.y, ...size, zIndex }}
+      onPointerDown={onActivate}
+      onFocusCapture={onActivate}
     >
-      <div className="title-bar" onMouseDown={handleMouseDown}>
+      <div
+        className="title-bar"
+        tabIndex={0}
+        aria-label={`${title}: drag to move, or use arrow keys`}
+        onKeyDown={(event) => {
+          const directions = { ArrowLeft: [-10, 0], ArrowRight: [10, 0], ArrowUp: [0, -10], ArrowDown: [0, 10] }
+          const direction = directions[event.key]
+          if (!direction) return
+          event.preventDefault()
+          setPosition(constrain({ x: visiblePosition.x + direction[0], y: visiblePosition.y + direction[1] }, size, area))
+        }}
+        onPointerDown={(event) => {
+          if (event.target.closest("button") || event.button !== 0) return
+          event.currentTarget.setPointerCapture(event.pointerId)
+          drag.current = { x: event.clientX - visiblePosition.x, y: event.clientY - visiblePosition.y }
+        }}
+        onPointerMove={(event) => {
+          if (!drag.current) return
+          setPosition(constrain({ x: event.clientX - drag.current.x, y: event.clientY - drag.current.y }, size, area))
+        }}
+        onPointerUp={finishDrag}
+        onPointerCancel={finishDrag}
+        onLostPointerCapture={finishDrag}
+      >
         <div className="title-bar-text">{title}</div>
         <div className="title-bar-controls">
-          {/* <button aria-label="Minimize" onClick={onMinimize}></button> */}
-          {/* <button aria-label="Maximize"></button> */}
-          <button aria-label="Close" onClick={onClose}></button>
+          <button type="button" aria-label={`Close ${title}`} onClick={onClose}></button>
         </div>
       </div>
       <div className="window-body">{children}</div>
-    </div>
+    </section>
   )
 }
-
-export default Window
