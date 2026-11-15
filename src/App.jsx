@@ -55,7 +55,7 @@ export default function App() {
             {item.type === "notepad" && <Notepad />}
             {item.type === "contact" && <Contact />}
             {item.type === "resume" && <Resume />}
-            {item.type === "Projects" && <Projects onIconClick={openWindow} />}
+            {item.type === "Projects" && <Projects />}
           </Window>
         )
       })}

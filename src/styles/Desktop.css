@@ -118,3 +118,30 @@
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
+
+.desktop-intro {
+  position: absolute;
+  top: 42px;
+  left: 40px;
+  max-width: 490px;
+  padding: 22px;
+  background: rgba(245, 248, 255, 0.88);
+  border-left: 3px solid #4178d7;
+  color: #122a53;
+  text-shadow: 0 1px 8px #ffffffb3;
+}
+.desktop-eyebrow { font-size: 10px; font-weight: bold; letter-spacing: 2px; margin: 0 0 16px; }
+.desktop-intro h1 { margin: 0; font-size: clamp(32px, 4vw, 52px); line-height: 1.1; letter-spacing: -2.5px; }
+.desktop-intro h1 span { display: block; font-size: 0.55em; letter-spacing: -1px; margin-top: 8px; font-weight: normal; }
+.desktop-intro-copy { font-size: 13px; max-width: 380px; line-height: 1.7; margin: 18px 0; }
+.portfolio-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #c0c0c0; border: 2px solid; border-color: #fff #343434 #343434 #fff; box-shadow: 1px 1px 0 #000; color: #142c53; padding: 8px 12px; font-family: inherit; font-weight: bold; font-size: 12px; cursor: pointer; text-shadow: none; }
+.portfolio-button img { width: 22px; height: 22px; }
+.portfolio-button:active { border-color: #343434 #fff #fff #343434; }
+.portfolio-button:focus-visible { outline: 2px dashed #142c53; outline-offset: 4px; }
+.desktop-hint { font-size: 10px; margin: 13px 0 0; }
+@media (max-width: 600px), (max-height: 520px) {
+  .desktop { grid-auto-rows: auto; row-gap: 20px; padding: 22px 16px; }
+  .desktop-intro { position: static; grid-column: 1 / -1; margin: 4px 0 10px; max-width: 490px; }
+  .desktop-intro h1 { font-size: 37px; }
+  .desktop-intro-copy { max-width: 360px; }
+}

@@ -1,133 +1,51 @@
-/* .rexico-city {
+.projects-view {
+  min-height: 100%;
+  background: #f5f4ef;
+  color: #152240;
+  user-select: text;
+}
+.projects-location {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;    
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background-size: cover;
-  background-position: center;
-  background-color: #00000000;
-  box-sizing: border-box;
-} */
-
-
-
-/* .rexico-city img{
-    width: 14.5rem;
-    height: 9rem;
-    display: block;
-    object-fit: cover;
-} */
-
-
-/* .rexico-caption {
-  margin-top: 12px;
-  text-align: center;
-  font-family: 'MS Sans Serif', Arial, sans-serif;
-  font-size: 12px;
-  color: #000;
-  background-color: #c0c0c0;
-  padding: 4px 12px;
-  border: 1px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-} */
-.folder-content {
-    width: 100%;
-    height: 100%;
-    background-color: #c0c0c05a;
-    padding: 1rem;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #e6e6e6;
+  border-bottom: 1px solid #b2b2b2;
+  font-size: 11px;
 }
-
-.tech-description {
-  
-  
-  /* border-color: #ffffff #808080 #808080 #ffffff; */
-  padding: 1px;
-  font-size: 0.5rem;
-  
-  width: 14.5rem;
-  height: 9rem;   
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
- 
-  
- 
-  
-  color: var(--white);
- 
-  
-  
-  box-sizing: border-box;
-  margin-top: 8px;
-  overflow-y: auto;
-  max-height: 100px; 
-  
-  
-  
+.projects-location img { width: 20px; height: 20px; }
+.projects-heading { padding: 25px 24px 20px; }
+.projects-heading > p, .project-category {
+  margin: 0 0 9px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: #4178d7;
 }
-
-.tech-description {
-  text-align: left;
+.projects-heading h2 { margin: 0 0 10px; font-size: 23px; line-height: 1.2; letter-spacing: -1px; }
+.projects-heading > span { font-size: 12px; line-height: 1.6; display: block; max-width: 440px; }
+.project-list { padding: 0 24px 24px; display: grid; gap: 20px; }
+.project-card { display: grid; grid-template-columns: 1.15fr 1fr; background: #fff; border: 1px solid #c5cad4; box-shadow: 3px 3px 0 #d9dce3; }
+.project-preview { min-width: 0; position: relative; display: block; overflow: hidden; background: #dde6f6; }
+.project-preview img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; display: block; transition: transform 180ms ease; }
+.project-preview:hover img { transform: scale(1.025); }
+.project-preview > span { position: absolute; bottom: 8px; right: 8px; background: #152240; color: white; font-size: 10px; padding: 5px 7px; }
+.project-details { padding: 20px; display: flex; flex-direction: column; align-items: flex-start; }
+.project-details h3 { font-size: 23px; margin: 0 0 8px; }
+.project-description { font-size: 12px; line-height: 1.6; margin: 0 0 12px; }
+.project-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 5px; padding: 0; margin: 0 0 15px; }
+.project-tags li { border: 1px solid #c5cad4; padding: 2px 6px; font-size: 10px; }
+.project-link { margin-top: auto; font-size: 11px; text-decoration: none; }
+.projects-footer { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; font-size: 11px; border-top: 1px solid #b2b2b2; background: #e6e6e6; }
+.projects-footer a { color: #173f86; }
+.projects-view a:focus-visible { outline: 2px dashed #173f86; outline-offset: 3px; }
+@media (max-width: 600px) {
+  .project-card { grid-template-columns: 1fr; }
+  .project-preview img { height: 170px; min-height: 0; }
+  .projects-heading { padding: 20px 16px; }
+  .project-list { padding: 0 16px 20px; }
+  .projects-heading h2 { font-size: 21px; }
 }
-
-.tech-description h3 {
-  margin: 0 0 8px 0;
-  font-size: 0.9rem;
-  color: var(--white);
-  text-shadow: black 1px 1px 2px;
-}
-
-.tech-description ul {
-  font-size: 0.5rem;
-  text-align: left;
- color: #000;
-   padding-left: 0.5rem;
-}
-
-.tech-description li {
- 
-  text-align: left;
-  
-  
-  
-}
-
-.tech-description strong {
-  color: #000080;
- 
-  
-  
-}
-
-.folder-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 16px;
-}
-
-.folder-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-}
-
-.icon-image {
-  width: 48px;
-  height: 48px;
-}
-
-.icon-text {
-  margin-top: 4px;
-  font-size: 12px;
-  text-align: center;
+@media (prefers-reduced-motion: reduce) {
+  .project-preview img { transition: none; }
 }

@@ -1,39 +1,12 @@
-.notepad {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;    
-  align-items: center;
-  height: 100%;
-  width: 100%;
-
-}
-
-.notepad-textarea {
- flex: 1;
-  resize: none;
-  background-color: rgba(255, 255, 255, 0.697);
-  color: black;
-  
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 0;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
-  font-size: 1rem;
-
-  
-  margin: 0;
-  box-sizing: border-box;
-  padding: 4px;
-  outline: none;
-
-  overflow: hidden;
-}
-
-.notepad-textarea::placeholder {
-  color: #404040;
-  opacity: 0.8;
-  font-weight: normal;
+.about-document {
+  min-height: 100%;
+  padding: 18px;
+  background: #fffef8;
+  color: #152240;
   font-size: 12px;
-  font-family: "Lucida Console", Monaco, monospace;
+  line-height: 1.7;
+  user-select: text;
 }
+.about-file { margin: 0 0 16px; font-size: 10px; letter-spacing: 1px; color: #52647c; }
+.about-document h2 { margin: 0 0 14px; font-size: 19px; line-height: 1.3; }
+.about-document a { color: #173f86; overflow-wrap: anywhere; }
