@@ -16,7 +16,11 @@ export default function Desktop({ onIconClick }) {
         {/* <p className="desktop-hint">Ett klassiskt skrivbord. En personlig portfolio.</p> */}
       </section>
       {["Projects", "notepad", "resume", "contact"].map((id) => (
-        <DesktopIcon key={id} program={programs[id]} onOpen={() => onIconClick(id)} />
+        <DesktopIcon 
+          key={id} 
+          program={programs[id]} 
+          onOpen={() => onIconClick(id)} 
+        />
       ))}
     </main>
   )
