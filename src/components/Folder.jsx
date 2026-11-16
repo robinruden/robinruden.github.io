@@ -7,16 +7,16 @@ const projects = [
     title: "Rexico City",
     category: "WEBBPLATS",
     image: "/img/rexico.png",
-    description: "En webbplats med dinosaurietema och ett lekfullt visuellt uttryck.",
+    description: "Ett gruppprojekt som blev till en nöjespark med dinosaurietema.",
     technologies: ["Vue", "Vite"],
   },
   {
     id: "amiga",
-    title: "Amiga",
+    title: "Amiga Dashboard",
     category: "DASHBOARD",
     image: "/img/amiga.png",
-    description: "En dashboard med fotbollstema och flera informationspaneler. Öppna projektet för att utforska gränssnittet.",
-    technologies: [],
+    description: "En dashboard i stil med Amiga Workbench 1.0.",
+    technologies: ["React", "Vite"]
   },
 ]
 
@@ -26,8 +26,8 @@ export default function Projects() {
       <div className="projects-location"><img src="/img/folder-open.ico" alt="" /><span>Robin Rudén / Mina projekt</span></div>
       <header className="projects-heading">
         <p>UTVALDA ARBETEN</p>
-        <h2>Små fönster till det jag bygger.</h2>
-        <span>Två projekt att kika närmare på. Öppna en webbplats för att prova själv.</span>
+        <h2>Några smakprov på mina byggen.</h2>
+        <span>Några projekt att kika närmare på. Öppna ett projekt för att utforska gränssnittet.</span>
       </header>
       <div className="project-list">
         {projects.map((project, index) => (

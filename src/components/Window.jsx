@@ -12,7 +12,7 @@ function constrain(position, size, area) {
   }
 }
 
-export default function Window({ title, children, defaultPosition, active, zIndex, width = 200, height = 200, onClose, onActivate }) {
+export default function Window({ className = "", title, children, defaultPosition, active, zIndex, width = 200, height = 200, onClose, onActivate }) {
   const [area, setArea] = useState(viewport)
   const [position, setPosition] = useState(defaultPosition ?? { x: 35, y: 100 })
   const drag = useRef(null)
@@ -29,7 +29,7 @@ export default function Window({ title, children, defaultPosition, active, zInde
 
   return (
     <section
-      className={`window ${active ? "active" : ""}`}
+      className={`window ${active ? "active" : ""} ${className}`}
       aria-label={title}
       style={{ left: visiblePosition.x, top: visiblePosition.y, ...size, zIndex }}
       onPointerDown={onActivate}
