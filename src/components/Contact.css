@@ -96,3 +96,10 @@
 
 
 .contact-content { min-width: 0; overflow-wrap: anywhere; }
+
+@media (max-width: 600px) {
+  .window--contact {
+    left: 8px !important;
+    max-width: calc(100% - 16px);
+  }
+}

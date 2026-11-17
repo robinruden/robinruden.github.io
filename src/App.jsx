@@ -42,7 +42,7 @@ export default function App() {
         const program = programs[item.type]
         return (
           <Window
-            className={item.type === "Projects" ? "window--projects" : ""}
+            className={item.type === "Projects" ? "window--projects" : item.type === "notepad" ? "window--about" : item.type === "contact" ? "window--contact" : ""}
             key={item.id}
             title={program.title.replace(/\.exe$/, "")}
             active={activeWindow === item.id}

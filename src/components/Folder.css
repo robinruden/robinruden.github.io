@@ -1,3 +1,8 @@
+.window--projects .window-body {
+  background: #f5f4ef;
+  overscroll-behavior: none;
+}
+
 .projects-view {
   min-height: 100%;
   background: #f5f4ef;
@@ -68,7 +73,6 @@
   .window--projects .title-bar { height: 32px; padding: 0 4px 0 10px; cursor: default; }
   .window--projects .title-bar-text { font-size: 13px; }
   .window--projects .title-bar-controls button { width: 24px; height: 24px; }
-  .window--projects .window-body { overscroll-behavior: contain; }
 }
 
 @media (prefers-reduced-motion: reduce) {
