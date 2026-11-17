@@ -16,7 +16,9 @@ export default function Window({ className = "", title, children, defaultPositio
   const [area, setArea] = useState(viewport)
   const [position, setPosition] = useState(defaultPosition ?? { x: 35, y: 100 })
   const drag = useRef(null)
-  const size = { width: Math.min(width, area.width), height: Math.min(height, area.height) }
+  const resizing = useRef(null)
+  const [dimensions, setDimensions] = useState(null)
+  const size = { width: Math.min(dimensions?.width ?? width, area.width), height: Math.min(dimensions?.height ?? height, area.height) }
   const visiblePosition = constrain(position, size, area)
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export default function Window({ className = "", title, children, defaultPositio
 
   return (
     <section
-      className={`window ${active ? "active" : ""} ${className}`}
+      className={`window ${active ? "active" : ""} ${dimensions ? "window--resized" : ""} ${className}`}
       aria-label={title}
       style={{ left: visiblePosition.x, top: visiblePosition.y, ...size, zIndex }}
       onPointerDown={onActivate}
@@ -65,6 +67,37 @@ export default function Window({ className = "", title, children, defaultPositio
         </div>
       </div>
       <div className="window-body">{children}</div>
+      <button
+        type="button"
+        className="window-resize-handle"
+        aria-label={`Ändra storlek på ${title}`}
+        onPointerDown={(event) => {
+          if (event.button !== 0) return
+          const bounds = event.currentTarget.parentElement.getBoundingClientRect()
+          setPosition({ x: bounds.left + window.scrollX, y: bounds.top + window.scrollY })
+          resizing.current = { x: event.clientX, y: event.clientY, width: bounds.width, height: bounds.height, maxWidth: area.width - bounds.left, maxHeight: area.height - bounds.top }
+          event.currentTarget.setPointerCapture(event.pointerId)
+        }}
+        onPointerMove={(event) => {
+          const start = resizing.current
+          if (!start) return
+          setDimensions({
+            width: Math.min(start.maxWidth, Math.max(200, start.width + event.clientX - start.x)),
+            height: Math.min(start.maxHeight, Math.max(150, start.height + event.clientY - start.y)),
+          })
+        }}
+        onPointerUp={() => { resizing.current = null }}
+        onPointerCancel={() => { resizing.current = null }}
+        onLostPointerCapture={() => { resizing.current = null }}
+        onKeyDown={(event) => {
+          const directions = { ArrowLeft: [-10, 0], ArrowRight: [10, 0], ArrowUp: [0, -10], ArrowDown: [0, 10] }
+          const direction = directions[event.key]
+          if (!direction) return
+          event.preventDefault()
+          const bounds = event.currentTarget.parentElement.getBoundingClientRect()
+          setDimensions({ width: Math.min(area.width - bounds.left, Math.max(200, bounds.width + direction[0])), height: Math.min(area.height - bounds.top, Math.max(150, bounds.height + direction[1])) })
+        }}
+      />
     </section>
   )
 }

@@ -67,6 +67,8 @@
   .window--projects {
     left: 8px !important;
     top: 8px !important;
+  }
+  .window--projects:not(.window--resized) {
     width: calc(100% - 16px) !important;
     height: calc(100dvh - 44px) !important;
   }
