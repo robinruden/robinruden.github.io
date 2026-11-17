@@ -25,3 +25,27 @@ body {
 button {
   font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
 }
+
+@media (max-width: 600px), (max-height: 520px) {
+  html {
+    display: block;
+    height: auto;
+    min-height: 100%;
+    overflow: auto;
+  }
+
+  body {
+    display: block;
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+
+  .win95-app {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: visible;
+    padding-bottom: 28px;
+  }
+}
