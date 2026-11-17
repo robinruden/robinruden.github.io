@@ -7,7 +7,7 @@ const projects = [
     title: "Rexico City",
     category: "WEBBPLATS",
     image: "/img/rexico.png",
-    description: "Ett gruppprojekt som blev till en nöjespark med dinosaurietema.",
+    description: "Ett grupprojekt som blev till en nöjespark med dinosaurietema.",
     technologies: ["Vue", "Vite"],
   },
   {
