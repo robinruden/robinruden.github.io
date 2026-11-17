@@ -11,6 +11,14 @@ const projects = [
     technologies: ["Vue", "Vite"],
   },
   {
+    id: "Supersidan",
+    title: "Supersidan",
+    category: "WEBBPLATS",
+    image: "/img/supersidan.png",
+    description: "Hemsidan för musikern och underhållaren Gunnar Persson",
+    technologies: ["React", "Vite"]
+  },
+  {
     id: "amiga",
     title: "Amiga Dashboard",
     category: "DASHBOARD",
@@ -46,7 +54,7 @@ export default function Projects() {
           </article>
         ))}
       </div>
-      <footer className="projects-footer"><span>2 projekt</span><a href="https://github.com/robinruden" target="_blank" rel="noopener noreferrer">Mer på min GitHub ↗</a></footer>
+      <footer className="projects-footer"><span>3 projekt</span><a href="https://github.com/robinruden" target="_blank" rel="noopener noreferrer">Mer på min GitHub ↗</a></footer>
     </div>
   )
 }
