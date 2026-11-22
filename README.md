@@ -21,13 +21,14 @@ npm run build
 npm run preview
 ```
 
-To publish the production build to the `gh-pages` branch:
+Publishing is automatic: every push to `main` runs `.github/workflows/deploy.yml` with Node.js 24. The workflow installs the locked dependencies with `npm ci`, runs lint, builds the site, and publishes `dist` to GitHub Pages only if all checks succeed.
 
-```sh
-npm run build
-npm run deploy
-```
+One-time repository setup:
 
-GitHub Pages must serve from that branch. Push source changes separately with Git.
+1. Open **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
+2. Check that **Custom domain** is set to `www.robinruden.com`. With an Actions deployment, the custom domain is managed in Pages settings rather than through the root `CNAME` file.
+3. Commit and push the workflow to `main`.
+
+Follow each deployment in the repository's **Actions** tab. You can also select **Deploy to GitHub Pages → Run workflow** on `main` to publish manually. No personal access token or additional repository secrets are required.
 
 Program names, links, sizes, and initial positions live in `src/data/programs.js`. Experimental components (including the 3D CD) are not imported by the active app, so their libraries are excluded from its initial bundle.
