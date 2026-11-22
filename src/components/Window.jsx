@@ -12,9 +12,12 @@ function constrain(position, size, area) {
   }
 }
 
-export default function Window({ className = "", title, children, defaultPosition, active, zIndex, width = 200, height = 200, onClose, onActivate }) {
+export default function Window({ className = "", title, children, defaultPosition, defaultMobilePosition, active, zIndex, width = 200, height = 200, onClose, onActivate }) {
   const [area, setArea] = useState(viewport)
-  const [position, setPosition] = useState(defaultPosition ?? { x: 35, y: 100 })
+  const [position, setPosition] = useState(() => {
+    const compactScreen = window.matchMedia("(max-width: 600px), (max-height: 520px)").matches
+    return (compactScreen ? defaultMobilePosition : null) ?? defaultPosition ?? { x: 35, y: 100 }
+  })
   const drag = useRef(null)
   const resizing = useRef(null)
   const [dimensions, setDimensions] = useState(null)

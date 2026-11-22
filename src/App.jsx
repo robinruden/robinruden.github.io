@@ -50,6 +50,7 @@ export default function App() {
             width={program.width}
             height={program.height}
             defaultPosition={program.position}
+            defaultMobilePosition={program.mobilePosition}
             onClose={() => setWindows((current) => current.filter((entry) => entry.id !== item.id))}
             onActivate={() => activateWindow(item.id)}
           >

@@ -32,3 +32,5 @@ One-time repository setup:
 Follow each deployment in the repository's **Actions** tab. You can also select **Deploy to GitHub Pages → Run workflow** on `main` to publish manually. No personal access token or additional repository secrets are required.
 
 Program names, links, sizes, and initial positions live in `src/data/programs.js`. Experimental components (including the 3D CD) are not imported by the active app, so their libraries are excluded from its initial bundle.
+
+Use `position: { x, y }` for a window's normal starting position and `mobilePosition: { x, y }` to override it on screens up to 600px wide or 520px high. Coordinates are pixels from the top-left corner; the window is kept within the available screen area. `desktopPosition` controls the icon's position, not the opened window. Close and reopen a window to see changes to its starting position.
