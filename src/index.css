@@ -26,7 +26,7 @@ body, html {
   place-items: center;
   height: 100%;
   padding: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 button {
