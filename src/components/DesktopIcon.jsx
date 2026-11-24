@@ -10,7 +10,15 @@ export default function DesktopIcon({ program, onOpen, inFolder = false }) {
     return () => media.removeEventListener("change", update)
   }, [])
   const nodeRef = useRef(null)
+  const dragStart = useRef({ x: 0, y: 0 })
   const wasDragged = useRef(false)
+
+  const trackDrag = (_event, { x, y }) => {
+    // Allow a little finger movement without treating a tap as a drag.
+    if (Math.hypot(x - dragStart.current.x, y - dragStart.current.y) > 6) {
+      wasDragged.current = true
+    }
+  }
 
   return (
     <Draggable
@@ -18,8 +26,16 @@ export default function DesktopIcon({ program, onOpen, inFolder = false }) {
       disabled={compact}
       bounds="parent"
       defaultPosition={inFolder ? undefined : program.desktopPosition}
-      onStart={() => { wasDragged.current = false }}
-      onDrag={() => { wasDragged.current = true }}
+      onStart={(_event, { x, y }) => {
+        dragStart.current = { x, y }
+        wasDragged.current = false
+      }}
+      onDrag={trackDrag}
+      onStop={(event, data) => {
+        trackDrag(event, data)
+        // react-draggable cancels touchstart, so touch taps never produce onClick.
+        if (event.type === "touchend" && event.touches.length === 0 && !wasDragged.current) onOpen()
+      }}
     >
       <button
         ref={nodeRef}
