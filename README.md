@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. Desktop icons can be opened with a click or with Enter/Space. Drag icons to rearrange them on a desktop screen. On small screens icons use a grid. Drag a window by its title bar using a mouse or touch; focus the title bar and use arrow keys to move it with a keyboard.
+Open the local URL printed by Vite. Desktop icons can be opened with a click, a tap, or with Enter/Space. Drag icons to rearrange them using a mouse or touch. On small screens icons start in a grid and can be dragged within the desktop; scroll using the background around the icons. Switching between compact and desktop layouts resets icon positions to fit the new layout. Drag a window by its title bar using a mouse or touch; focus the title bar and use arrow keys to move it with a keyboard.
 
 Opening an already open program brings its window to the front. Project icons open external websites in new tabs. Contact and Resume include PDF download links.
 

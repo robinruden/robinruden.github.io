@@ -22,10 +22,10 @@ export default function DesktopIcon({ program, onOpen, inFolder = false }) {
 
   return (
     <Draggable
+      key={compact ? "compact" : "desktop"}
       nodeRef={nodeRef}
-      disabled={compact}
       bounds="parent"
-      defaultPosition={inFolder ? undefined : program.desktopPosition}
+      defaultPosition={inFolder || compact ? undefined : program.desktopPosition}
       onStart={(_event, { x, y }) => {
         dragStart.current = { x, y }
         wasDragged.current = false

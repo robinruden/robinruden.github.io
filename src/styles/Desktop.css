@@ -80,6 +80,7 @@
   background: transparent;
   color: inherit;
   font: inherit;
+  touch-action: none;
 }
 
 .desktop-icon:focus-visible, .folder-icon:focus-visible {
@@ -93,12 +94,12 @@
     grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
     grid-auto-rows: minmax(90px, auto);
     height: auto;
+    min-height: calc(100dvh - 28px);
     overflow: visible;
   }
 
   .desktop .desktop-icon {
     position: relative;
-    transform: none !important;
     width: 100%;
     height: auto;
   }
